@@ -1,52 +1,58 @@
 import {Rule} from 'sanity'
 
 export default {
-  name: 'blog',
+  name: 'post',
   type: 'document',
-  title: 'Blog',
+  title: 'Post',
   fields: [
     {
       name: 'title',
       type: 'string',
-      title: 'Title of blog article',
+      title: 'Title',
       validation: (rule: Rule) => rule.required().error('Title is required'),
     },
     {
       name: 'slug',
       type: 'slug',
-      title: 'Slug of your blog article',
+      title: 'Slug',
       options: {
         source: 'title',
       },
       validation: (rule: Rule) => rule.required().error('Slug is required'),
     },
     {
-      name: 'titleImage',
+      name: 'featuredImage',
       type: 'image',
-      title: 'Title Image',
+      title: 'Featured Image',
     },
     {
-      name: 'publsihedAt',
+      name: 'publishedAt',
       type: 'datetime',
       title: 'Published at',
       initialValue: () => new Date().toISOString(),
     },
     {
-      name: 'smallDescription',
+      name: 'excerpt',
       type: 'text',
-      title: 'Small Description',
+      title: 'Excerpt (Max 200 characters)',
       validation: (rule: Rule) => rule.max(200).error('Max 200 characters'),
     },
     {
-      name: 'content',
+      name: 'body',
       type: 'array',
-      title: 'Content',
+      title: 'Body',
       of: [
         {
           type: 'block',
         },
         {type: 'image', fields: [{type: 'text', name: 'alt', title: 'Alt'}]},
       ],
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'tag'}]}],
     },
   ],
 }

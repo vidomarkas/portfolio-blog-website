@@ -14,10 +14,11 @@ import { CircleChevronRight } from "lucide-react";
 
 async function getData() {
 	const query = `
-    *[_type == 'blog']| order(_createdAt desc){
+    *[_type == 'post']| order(_createdAt desc){
         title,
-        "currentSlug": slug.current,
-        titleImage
+        "slug": slug.current,
+        featuredImage,
+        tags[]-> {_id, slug, name}
     }`;
 
 	const data = client.fetch(query);
@@ -26,24 +27,10 @@ async function getData() {
 }
 
 export default async function Home() {
-	const data: simpleBlogCard[] = await getData();
+	const posts: simpleBlogCard[] = await getData();
 
-	console.log("mydata", data);
+	// console.log("mydata", data);
 
-	const mydata = [
-		{ title: "Title 1" },
-		{ title: "Title 2" },
-		{ title: "Title 3" },
-		{ title: "Title 4" },
-		{ title: "Title 5" },
-		{ title: "Title 6" },
-		{ title: "Title 7" },
-		{ title: "Title 8" },
-		{ title: "Title 9" },
-		{ title: "Title 10" },
-		{ title: "Title 11" },
-		{ title: "Title 12" },
-	];
 	return (
 		<div className="flex flex-col min-h-screen mt-32">
 			<main className="flex-grow ">
@@ -173,86 +160,74 @@ export default async function Home() {
 						</Link>
 					</div>
 				</section>
-				<section className="py-20">
-					<div className="container ">
-						<h2 className="text-2xl">
-							The latest.{" "}
-							<span className="text-gray-500">
-								Take a look at what’s new, right now.
-							</span>
-						</h2>
-					</div>
-
-					<div
-						className="scroll-container flex w-full gap-x-10 overflow-x-scroll snap-x scroll-smooth snap-mandatory pt-10"
-						role="list"
-					>
-						{data.map((post, id) => (
-							<article
-								role="listitem"
-								key={id}
-								className="snap-start "
-							>
-								<div className="card-view flex-shrink-0 z-10">
-									<Link
-										href={`blog/${post.currentSlug}`}
-										className="group"
-									>
-										<div className="border border-black/-5 dark:border-white/5 rounded-[22px] w-[400px] h-[500px] p-8 relative overflow-hidden flex items-end bg-[#121212]">
-											<div className="card-overlay">
-												<Image
-													src={urlFor(
-														post.titleImage
-													).url()}
-													width={400}
-													height={500}
-													alt={post.title}
-													className="w-full h-full object-cover object-center group-hover:scale-105 transition "
-												/>
-											</div>
-											<div className="card-description">
-												<div className="mb-2 font-medium text-white">
-													#WordPress
-												</div>
-												<div className="text-white/60 mb-3">
-													{post.title}
-												</div>
-												<div className="text-white">
-													Read more{" "}
-													<CircleChevronRight className="inline h-4 w-4 text-white" />
-												</div>
-											</div>
-										</div>
-									</Link>
-								</div>
-							</article>
-						))}
-					</div>
-				</section>
-				{/* <section className=" bg-blue-100">
-					<div className="container ">
-						<h2 className="text-2xl">Blog</h2>
-						<div className=" grid grid-cols-1 lg:grid-cols-4 mt-5">
-							{data.map((post, idx) => {
-								return (
-									<Link
-										href={`/blog/${post.currentSlug}`}
-										key={idx}
-									>
-										<Image
-											src={urlFor(post.titleImage).url()}
-											alt={post.title}
-											height={200}
-											width={400}
-											className="aspect-video"
-										/>
-										<h2>{post.title}</h2>
-									</Link>
-								);
-							})}
+				{posts && posts?.length > 0 && (
+					<section className="py-20">
+						<div className="container ">
+							<h2 className="text-2xl">
+								The latest.{" "}
+								<span className="text-gray-500">
+									Take a look at what’s new, right now.
+								</span>
+							</h2>
 						</div>
-					</div>
-				</section> */}
+
+						<div
+							className="scroll-container flex w-full gap-x-10 overflow-x-scroll snap-x scroll-smooth snap-mandatory pt-10"
+							role="list"
+						>
+							{posts?.map((post, id) => (
+								<article
+									role="listitem"
+									key={id}
+									className="snap-start "
+								>
+									<div className="card-view flex-shrink-0 z-10">
+										<Link
+											href={`blog/${post.slug}`}
+											className="group"
+										>
+											<div className="border border-black/-5 dark:border-white/5 rounded-[22px] w-[400px] h-[500px] p-8 relative overflow-hidden flex items-end bg-[#121212]">
+												<div className="card-overlay">
+													<Image
+														src={urlFor(
+															post.featuredImage
+														).url()}
+														width={400}
+														height={500}
+														alt={post.title}
+														className="w-full h-full object-cover object-center group-hover:scale-105 transition "
+													/>
+												</div>
+												<div className="card-description">
+													<div className="mb-2 font-medium text-white">
+														{post?.tags?.map(
+															(tag) => (
+																<p
+																	key={
+																		tag?._id
+																	}
+																>
+																	#{tag?.name}
+																</p>
+															)
+														)}
+													</div>
+													<div className="text-white/60 mb-3 line-clamp-2">
+														{post.title}
+													</div>
+													<div className="text-white">
+														Read more{" "}
+														<CircleChevronRight className="inline h-4 w-4 text-white" />
+													</div>
+												</div>
+											</div>
+										</Link>
+									</div>
+								</article>
+							))}
+						</div>
+					</section>
+				)}
 				<section className="py-20">
 					<div className="text-container">
 						<h2 className="text-2xl">

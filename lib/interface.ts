@@ -1,8 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface simpleBlogCard {
 	title: string;
-	currentSlug: string;
-	titleImage: any;
+	slug: { current: string };
+	featuredImage: any;
+	tags: Array<Tag>;
+	_id: string;
+}
+
+export interface Tag {
+	name: string;
+	slug: { current: string };
+	_id: string;
 }
 
 export interface fullBlog {
