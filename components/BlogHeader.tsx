@@ -61,7 +61,7 @@ const OverlayCopy = ({ heading }) => {
 		offset: ["start end", "end start"],
 	});
 
-	const y = useTransform(scrollYProgress, [0, 1], [250, -250]);
+	const y = useTransform(scrollYProgress, [0, 1], [250, -10]);
 	const opacity = useTransform(scrollYProgress, [0.25, 0.5, 0.75], [0, 1, 0]);
 
 	return (
