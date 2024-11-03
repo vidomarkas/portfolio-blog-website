@@ -1,16 +1,16 @@
-// import Navbar from "@/components/Navbar";
-import { simpleBlogCard } from "@/lib/interface";
-import { client, urlFor } from "@/lib/sanity";
-import Console from "@/components/Console";
 import Image from "next/image";
 import Link from "next/link";
+import { CircleChevronRight } from "lucide-react";
+import { simpleBlogCard } from "@/lib/interface";
+import { client, urlFor } from "@/lib/sanity";
 
+import CopyEmail from "@/components/CopyEmail";
 import githubIcon from "../public/assets/icons/github.svg";
 import whatsapp from "../public/assets/icons/whatsapp.svg";
 import instaIcon from "../public/assets/icons/instagram.svg";
 import linkedIcon from "../public/assets/icons/linkedin.svg";
-import CopyEmail from "@/components/CopyEmail";
-import { CircleChevronRight } from "lucide-react";
+
+export const revalidate = 3600;
 
 async function getData() {
 	const query = `
@@ -37,22 +37,14 @@ export default async function Home() {
 				<header className="py-20">
 					<div className="container ">
 						<h1 className="text-7xl font-semibold	mb-8">
-							Product Design. Interfaces. <br />
-							Systems. Strategy. UX. & More
+							Building the Web. Performance. <br />
+							Custom Builds. UX. & More
 						</h1>
-						<h2>Something about my craft</h2>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Magnam, numquam repellendus voluptates ipsum
-							id, accusamus optio temporibus dicta, hic inventore
-							excepturi. Doloribus consequatur molestias amet
-							fugit nam autem veniam est.
-						</p>
 					</div>
 				</header>
 				<section>
 					<div className="container grid grid-cols-1 md:grid-cols-2 grid-rows-6 gap-10 lg:gap-32">
-						<Link href="/" className="work-item">
+						<Link href="/work/trulawn" className="work-item">
 							<div className="work-item__image">
 								<Image
 									src="/assets/img/days.webp"
@@ -62,7 +54,7 @@ export default async function Home() {
 								/>
 							</div>
 							<div className="work-item__info">
-								<div className="work-item__title">Days</div>
+								<div className="work-item__title">Trulawn</div>
 								<div className="work-item__description">
 									Full stack application
 								</div>
@@ -146,11 +138,15 @@ export default async function Home() {
 				<section className="container py-20">
 					<div className="text-container">
 						<p className="text-[22px] mb-4">
-							Lorem ipsum dolor sit, amet consectetur adipisicing
-							elit. Commodi, sequi repudiandae. Reiciendis
-							perspiciatis ad similique voluptatum labore, ipsum
-							totam sint mollitia ut, debitis ratione! Ipsa
-							architecto nisi recusandae dolores nulla.
+							I'm all about creating high-performing, thoughtfully
+							crafted web experiences that make a difference. To
+							me, quality isn’t just about speed—it’s about
+							building something that’s tailored and built to
+							last. From bespoke builds to seamless integrations,
+							I bring together the technical and creative sides of
+							web development to build solutions that genuinely
+							work. This is my approach, my work, and a glimpse
+							into what drives me forward.
 						</p>
 						<Link
 							href="/about"
@@ -166,7 +162,7 @@ export default async function Home() {
 							<h2 className="text-2xl">
 								The latest.{" "}
 								<span className="text-gray-500">
-									Take a look at what’s new, right now.
+									Take a look at what’s new in my blog.
 								</span>
 							</h2>
 						</div>
@@ -300,10 +296,6 @@ export default async function Home() {
 					</div>
 				</section>
 			</main>
-			<footer className="bg-[#e3e3e3] text-white">
-				<div className="container ">footer</div>
-			</footer>
-			<Console />
 		</div>
 	);
 }
