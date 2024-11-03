@@ -14,9 +14,16 @@ export interface Tag {
 }
 
 export interface fullBlog {
-	currentSlug: string;
+	slug: string;
 	title: string;
-	content: any;
-	titleImage: any;
-	headings: any;
+	body: any;
+	featuredImage: any;
+	headings?: HTMLHeadingElement | Array<string>;
+}
+export interface fullWork {
+	slug: string;
+	title: string;
+	body: any;
+	featuredImage: any;
+	headings?: HTMLHeadingElement | Array<string>;
 }
