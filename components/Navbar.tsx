@@ -13,7 +13,7 @@ import {
 } from "framer-motion";
 import useScrollListener from "../lib/hooks/useScrollListener";
 
-const Navbar = () => {
+export const Navbar = () => {
 	const links = [
 		{ name: "About", path: "/about" },
 		{ name: "Work", path: "/work" },
@@ -137,5 +137,3 @@ const Navbar = () => {
 		</header>
 	);
 };
-
-export default Navbar;
