@@ -88,6 +88,24 @@
 	}
 }
 
+body {
+	// background-image: url("/assets/noise.png"),
+	// 	radial-gradient(ellipse at top, #242937, transparent),
+	// 	radial-gradient(ellipse at bottom, #171340, transparent);
+
+	// background-image: url("/assets/noise.png");
+	// background-size: 200px, 100%, 200%;
+	// background-attachment: fixed;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+	scroll-margin-top: 80px;
+}
+
 .work-item {
 	@apply w-full row-span-2;
 
@@ -139,7 +157,9 @@
 }
 
 .header {
-	backdrop-filter: blur(10px);
+	// backdrop-filter: blur(10px);
+	@apply bg-background dark:bg-[#121212];
+	// opacity: 0.9;
 	left: 0;
 	width: 100%;
 	z-index: 1;
@@ -207,9 +227,9 @@
 	scrollbar-width: none; /* Firefox */
 }
 
-// html {
-// 	scroll-behavior: smooth;
-// }
+html {
+	scroll-behavior: smooth;
+}
 
 .nav {
 	a,
@@ -217,14 +237,4 @@
 	span {
 		transition: all 1s var(--elastic-out);
 	}
-}
-
-.progress-bar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 2px;
-	background: #000000;
-	transform-origin: 0%;
 }
