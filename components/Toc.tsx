@@ -7,6 +7,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Confetti from "react-dom-confetti";
 import { slugify } from "../lib/utils";
 import { useWindowSize } from "@uidotdev/usehooks";
+import { ArrowRight } from "lucide-react";
 
 export const Toc = ({ headings, objective }) => {
 	const [activeId, setActiveId] = useState("");
@@ -187,20 +188,25 @@ export const Toc = ({ headings, objective }) => {
 	}, [postContentLoaded, headings]);
 
 	return (
-		<div className="sticky top-28">
+		<div className="sticky top-28 mb-12">
 			<div className="bg-white overflow-hidden pt-6 px-6 pb-2.5 relative border-2 rounded-xl border-gray-EE">
 				<header className="pb-4">
 					<button
 						onClick={() => collapseToc()}
 						className="flex justify-between items-center w-full"
 					>
-						<h3>Table of contents</h3>
-						{/* <ArrowIcon
-						className={clsx("w-7 h-7 -mr-2 transition-transform", {
-							"rotate-90": tocCollapsed,
-							"-rotate-90": !tocCollapsed,
-						})}
-					/> */}
+						<h2 className="text-xl font-semibold">
+							Table of contents
+						</h2>
+						<ArrowRight
+							className={clsx(
+								"w-7 h-7 -mr-2 transition-transform",
+								{
+									"rotate-90": tocCollapsed,
+									"-rotate-90": !tocCollapsed,
+								}
+							)}
+						/>
 					</button>
 				</header>
 				<div className="relative">
@@ -217,15 +223,16 @@ export const Toc = ({ headings, objective }) => {
 								y: tocCollapsed ? tocScroll : 0,
 							}}
 						>
-							<div className="w-1 bg-purple-300 absolute top-0 left-4 bottom-0 hidden lg:block" />
+							<div className="w-1 bg-[#EEE3FC] absolute top-0 left-4 bottom-0 hidden lg:block" />
 							<motion.div
 								style={{
 									height: scrollBarHeight,
 								}}
-								className="w-1 origin-top bg-purple-600 absolute top-0 left-4 hidden lg:block"
+								className="w-1 origin-top bg-[#8E44EC] absolute top-0 left-4 hidden lg:block"
 							/>
 							<ul className="list-none" ref={headingsList}>
 								{headings.map((heading) => {
+									console.log("heading", heading);
 									const headingText = heading.children
 										.map((child: any) => child.text)
 										.join(" ");
@@ -238,25 +245,23 @@ export const Toc = ({ headings, objective }) => {
 												"first:pt-0 last:pb-6",
 												{
 													"text-sm py-0.5":
-														heading.type ===
-														"heading3",
+														heading.style === "h3",
 													"text-base py-2":
-														heading.type ===
-														"heading2",
+														heading.style === "h2",
 												}
 											)}
 										>
 											<a
 												href={`#${slug}`}
 												className={clsx(
-													"inline-block lg:ml-8 rounded-sm text-gray-15 leading-6 px-2 relative transition-colors duration-200 focus:outline-none focus:ring-2 ring-gray-EE",
+													"inline-block lg:ml-8 rounded-sm text-gray-900 leading-6 px-2 relative transition-colors duration-200 focus:outline-none focus:ring-2 ring-gray-200",
 													{
 														"pl-6":
-															heading.type ===
-															"heading3",
+															heading.style ===
+															"h3",
 														"pl-2":
-															heading.type ===
-															"heading2",
+															heading.style ===
+															"h2",
 														underline:
 															activeId ===
 															heading.id,
@@ -291,7 +296,7 @@ export const Toc = ({ headings, objective }) => {
 						)}
 					/>
 				</div>
-				<div className="items-center bg-gray-F7 rounded-lg z-10 relative -mx-3.5 py-2.5 pl-16 -mt-2 hidden lg:flex">
+				<div className="items-center bg-gray-100 rounded-lg z-10 relative -mx-3.5 py-2.5 pl-16 -mt-2 hidden lg:flex">
 					<svg
 						width="64"
 						height="64"
@@ -347,7 +352,7 @@ export const Toc = ({ headings, objective }) => {
 					) : (
 						<div className="text-base-tight flex flex-col">
 							<span className="font-bold">Congratulations!</span>
-							<span className="text-gray-50">
+							<span className="text-gray-600">
 								You’ve thoroughly explored this topic!
 							</span>
 						</div>

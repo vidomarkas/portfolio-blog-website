@@ -6,6 +6,7 @@ import { slugify } from "@/lib/utils";
 import { TextParallaxContent } from "@/components/BlogHeader";
 import { Toc } from "@/components/Toc";
 
+
 export const revalidate = 3600;
 
 async function getData(slug: string) {
@@ -15,8 +16,9 @@ async function getData(slug: string) {
     title,
     body,
     featuredImage,
+    publishedAt,
     "headings": body[style in ["h2", "h3", "h4", "h5", "h6"]],
-
+    "timeToRead": round(length(pt::text(body)) / 5 / 180 )
 }[0]`;
 
 	const data = await client.fetch(query);
@@ -29,31 +31,34 @@ export default async function BlogArticle({
 }: {
 	params: { slug: string };
 }) {
-	const { featuredImage, title, body, headings }: fullBlog = await getData(
-		params.slug
-	);
-	// console.log("data", data);
+	const {
+		featuredImage,
+		title,
+		body,
+		headings = [],
+		publishedAt,
+		timeToRead,
+	}: fullBlog = await getData(params.slug);
+
+	const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
 
 	return (
 		<>
 			<TextParallaxContent
 				imgUrl={urlFor(featuredImage).url()}
 				heading={title}
+				date={formattedDate}
+				timeToRead={timeToRead}
 			>
 				<div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-8 xl:gap-6 pt-10 relative">
 					<aside className="lg:col-start-2 lg:col-span-3">
-						<div>
-							<div className="border">
-								author
-								<div> Viktoras Domarkas</div>
-								<div> web developer</div>
-							</div>
-							<div>date published ...</div>
-							<div>time to read ...</div>
-							<div>views ...</div>
-							<div>comments? ...</div>
-						</div>
-						<Toc headings={headings} objective="test" />
+						{headings?.length > 0 && (
+							<Toc headings={headings} objective={null} />
+						)}
 					</aside>
 					<div className="lg:col-span-7 pb-12">
 						<article

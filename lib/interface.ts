@@ -18,7 +18,9 @@ export interface fullBlog {
 	title: string;
 	body: any;
 	featuredImage: any;
-	headings?: HTMLHeadingElement | Array<string>;
+	publishedAt: Date;
+	headings?: Array<string>;
+	timeToRead: number;
 }
 export interface fullWork {
 	slug: string;
