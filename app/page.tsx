@@ -158,13 +158,16 @@ export default async function Home() {
 				</section>
 				{posts && posts?.length > 0 && (
 					<section className="py-20">
-						<div className="container ">
+						<div className="container flex justify-between">
 							<h2 className="text-2xl">
 								The latest.{" "}
 								<span className="text-gray-500">
 									Take a look at what’s new in my blog.
 								</span>
 							</h2>
+							<Link href="/blog" className="text-2xl underline">
+								All Articles
+							</Link>
 						</div>
 
 						<div
