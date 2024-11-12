@@ -24,6 +24,7 @@ export default {
       name: 'featuredImage',
       type: 'image',
       title: 'Featured Image',
+      validation: (rule: Rule) => rule.required().error('Image is required'),
     },
     {
       name: 'publishedAt',

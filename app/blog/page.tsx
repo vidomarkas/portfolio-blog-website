@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { client, urlFor } from "@/lib/sanity";
 import { simpleBlogCard } from "@/lib/interface";
+import blogImg from "@/public/assets/img/theblog.svg";
 
 export const revalidate = 3600;
 
@@ -19,11 +20,18 @@ async function getData() {
 	return data;
 }
 
-export default async function Home() {
+export default async function Blog() {
 	const posts: simpleBlogCard[] = await getData();
 
 	return (
 		<div className="flex flex-col min-h-screen mt-32">
+			<h1>THE viktoras domarkas BLOG</h1>
+			<p>short description</p>
+			<div>subscribe box</div>
+			<div>tags</div>
+			<div>search</div>
+			{/* <Image className="w-full h-auto" src={blogImg} alt="the blog" /> */}
+
 			<div className="flex">
 				{posts?.map((post, id) => (
 					<article role="listitem" key={id} className="">

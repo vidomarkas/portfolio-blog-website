@@ -5,7 +5,7 @@ import { PortableText } from "next-sanity";
 import { slugify } from "@/lib/utils";
 import { TextParallaxContent } from "@/components/BlogHeader";
 import { Toc } from "@/components/Toc";
-
+import Link from "next/link";
 
 export const revalidate = 3600;
 
@@ -73,7 +73,13 @@ export default async function BlogArticle({
 					</div>
 				</div>
 			</TextParallaxContent>
-			<section className="bg-red-500 p-20">more to read</section>
+			<section className="container">
+				<div>
+					actions
+					<Link href="/blog">Back to the Blog</Link>
+				</div>
+			</section>
+			<section className="bg-[#f9f9f9] p-20">more to read</section>
 		</>
 	);
 }

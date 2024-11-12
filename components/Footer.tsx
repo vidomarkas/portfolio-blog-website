@@ -16,10 +16,17 @@ export const Footer = () => {
 				<p>Copyright © {year} Viktoras Domarkas</p>
 				<ul className="flex space-x-3">
 					<li>
-						<Link href="/cookies">Cookies</Link>
+						<Link href="/cookies" className="hover:underline">
+							Cookies
+						</Link>
 					</li>
 					<li>
-						<Link href="/privacy-policy">Privacy policy</Link>
+						<Link
+							href="/privacy-policy"
+							className="hover:underline"
+						>
+							Privacy policy
+						</Link>
 					</li>
 				</ul>
 			</div>

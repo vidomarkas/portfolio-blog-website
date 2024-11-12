@@ -14,7 +14,7 @@ export const revalidate = 3600;
 
 async function getData() {
 	const query = `
-    *[_type == 'post']| order(_createdAt desc){
+    *[_type == 'post']| order(_createdAt desc)[0...5]{
         title,
         "slug": slug.current,
         featuredImage,
