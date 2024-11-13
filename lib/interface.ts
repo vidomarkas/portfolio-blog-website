@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface simpleBlogCard {
 	title: string;
+	excerpt: string;
 	slug: { current: string };
 	featuredImage: any;
 	tags: Array<Tag>;

@@ -25,7 +25,7 @@ export const Navbar = () => {
 	const scroll = useScrollListener();
 
 	useEffect(() => {
-		let _classList = ["header"];
+		const _classList = ["header"];
 
 		// Check if user has scrolled more than 150px
 		if (scroll.y > 113 && scroll.y - scroll.lastY < 0) {
@@ -111,7 +111,7 @@ export const Navbar = () => {
 												className={cn(
 													"py-2 px-4 relative transition-all duration-500 ease-out",
 													pathName === link.path
-														? "text-slate-400"
+														? "underline underline-offset-8"
 														: ""
 												)}
 											>

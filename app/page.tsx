@@ -211,9 +211,9 @@ export default async function Home() {
 															)
 														)}
 													</div>
-													<div className="text-white/60 mb-3 line-clamp-2">
+													<h3 className="text-white/60 mb-3 line-clamp-2">
 														{post.title}
-													</div>
+													</h3>
 													<div className="text-white">
 														Read more{" "}
 														<CircleChevronRight className="inline h-4 w-4 text-white" />
