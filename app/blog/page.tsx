@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { client, urlFor } from "@/lib/sanity";
 import { simpleBlogCard } from "@/lib/interface";
+
 import { Bell } from "lucide-react";
+import TagList from "@/components/TagList";
 
 export const revalidate = 3600;
 
@@ -48,9 +50,9 @@ export default async function Blog() {
 					/>
 					<button
 						type="submit"
-						className="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-xl flex gap-x-2"
+						className="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-xl flex gap-x-2 group"
 					>
-						<Bell />
+						<Bell className="group-hover:rotate-12 transition-all duration-75" />
 						Subscribe
 					</button>
 				</form>
@@ -105,6 +107,7 @@ export default async function Blog() {
 					<div className="sticky top-32">
 						<div>
 							<h2>Recommended topics</h2>
+							<TagList />
 						</div>
 						<div>search</div>
 						{/* <Image className="w-full h-auto" src={blogImg} alt="the blog" /> */}

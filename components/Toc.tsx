@@ -34,43 +34,6 @@ export const Toc = ({ headings, objective }) => {
 		};
 	}, [path]);
 
-	const components = (type, node, text, children) => {
-		if (type === "heading2" || type === "heading3") {
-			const id = slugify(text);
-
-			if (!text) {
-				return <></>;
-			}
-
-			return (
-				<li
-					className={clsx("first:pt-0 last:pb-6", {
-						"text-sm py-0.5": type === "heading3",
-						"text-base py-2": type === "heading2",
-					})}
-				>
-					<a
-						href={`#${id}`}
-						className={clsx(
-							"inline-block lg:ml-8 rounded-sm text-gray-15 leading-6 px-2 relative transition-colors duration-200 focus:outline-none focus:ring-2 ring-gray-EE",
-							{
-								"pl-6": type === "heading3",
-								"pl-2": type === "heading2",
-								underline: activeId === id,
-								"text-opacity-50 hover:text-primary-purple hover:text-opacity-100":
-									activeId !== id,
-							}
-						)}
-					>
-						<>{text}</>
-					</a>
-				</li>
-			);
-		}
-
-		return <></>;
-	};
-
 	const tocScroll = useTransform(
 		scrollCollapsedHeight,
 		[0, innerContainerHeight - 60],
@@ -189,7 +152,7 @@ export const Toc = ({ headings, objective }) => {
 
 	return (
 		<div className="sticky top-28 mb-12">
-			<div className="bg-white overflow-hidden pt-6 px-6 pb-2.5 relative border-2 rounded-xl border-gray-EE">
+			<div className="bg-white dark:bg-[#191a1d] overflow-hidden pt-6 px-6 pb-2.5 relative border-2 rounded-xl dark:border-transparent">
 				<header className="pb-4">
 					<button
 						onClick={() => collapseToc()}
@@ -223,65 +186,80 @@ export const Toc = ({ headings, objective }) => {
 								y: tocCollapsed ? tocScroll : 0,
 							}}
 						>
-							<div className="w-1 bg-[#EEE3FC] absolute top-0 left-4 bottom-0 hidden lg:block" />
+							<div className="w-1 bg-[#b3d7ff] absolute top-0 left-4 bottom-0 hidden lg:block" />
 							<motion.div
 								style={{
 									height: scrollBarHeight,
 								}}
-								className="w-1 origin-top bg-[#b386fd] absolute top-0 left-4 hidden lg:block"
+								className="w-1 origin-top bg-[#248aff] absolute top-0 left-4 hidden lg:block"
 							/>
 							<ul className="list-none" ref={headingsList}>
 								{headings.map((heading) => {
-									console.log("heading", heading);
-									const headingText = heading.children
-										.map((child: any) => child.text)
-										.join(" ");
+									if (
+										heading.style === "h2" ||
+										heading.style === "h3" ||
+										heading.style === "h4"
+									) {
+										// console.log("heading", heading);
+										const headingText = heading.children
+											.map((child: any) => child.text)
+											.join(" ");
 
-									const slug = slugify(headingText);
-									return (
-										<li
-											key={heading?._key}
-											className={clsx(
-												"first:pt-0 last:pb-6",
-												{
-													"text-sm py-0.5":
-														heading.style === "h3",
-													"text-base py-2":
-														heading.style === "h2",
-												}
-											)}
-										>
-											<a
-												href={`#${slug}`}
+										const slug = slugify(headingText);
+										return (
+											<li
+												key={heading?._key}
 												className={clsx(
-													"inline-block lg:ml-8 rounded-sm text-gray-900 leading-6 px-2 relative transition-colors duration-200 focus:outline-none focus:ring-2 ring-gray-200",
+													"first:pt-0 last:pb-6",
 													{
-														"pl-6":
+														"text-xs py-0.5":
+															heading.style ===
+															"h4",
+														"text-sm py-0.5":
 															heading.style ===
 															"h3",
-														"pl-2":
+														"text-base py-2":
 															heading.style ===
 															"h2",
-														underline:
-															activeId ===
-															heading.id,
-														"text-opacity-50 hover:text-primary-purple hover:text-opacity-100":
-															activeId !==
-															heading.id,
 													}
 												)}
 											>
-												{headingText}
-											</a>
-										</li>
-									);
+												<a
+													href={`#${slug}`}
+													className={clsx(
+														"inline-block lg:ml-8 rounded-sm text-gray-900 leading-6 px-2 relative transition-colors duration-200 focus:outline-none focus:ring-2 ring-gray-200 hover:underline dark:text-gray-400",
+														{
+															"pl-6":
+																heading.style ===
+																"h4",
+															"pl-4":
+																heading.style ===
+																"h3",
+															"pl-2":
+																heading.style ===
+																"h2",
+															"underline underline-offset-2 dark:text-gray-200":
+																activeId ===
+																slug,
+															"text-opacity-50 hover:text-opacity-100 ":
+																activeId !==
+																slug,
+														}
+													)}
+												>
+													{headingText}
+												</a>
+											</li>
+										);
+									}
+									return <></>;
 								})}
 							</ul>
 						</motion.div>
 					</motion.div>
 					<div
 						className={clsx(
-							"absolute transition-opacity w-full inset-0 lg:left-7 bottom-auto hidden lg:block h-4 bg-gradient-to-b from-white to-transparent pointer-events-none",
+							"absolute transition-opacity w-full inset-0 lg:left-7 bottom-auto hidden lg:block h-4 bg-gradient-to-b from-white to-transparent dark:from-[#191a1d] pointer-events-none",
 							{
 								"opacity-0": !tocCollapsed,
 							}
@@ -289,14 +267,14 @@ export const Toc = ({ headings, objective }) => {
 					/>
 					<div
 						className={clsx(
-							"absolute transition-opacity w-full inset-0 lg:left-7 top-auto h-4 bg-gradient-to-t from-white to-transparent pointer-events-none",
+							"absolute transition-opacity w-full inset-0 lg:left-7 top-auto h-4 bg-gradient-to-t from-white to-transparent dark:from-[#191a1d] pointer-events-none",
 							{
 								"opacity-0": !tocCollapsed,
 							}
 						)}
 					/>
 				</div>
-				<div className="items-center bg-gray-100 rounded-lg z-10 relative -mx-3.5 py-2.5 pl-16 -mt-2 hidden lg:flex">
+				<div className="items-center bg-gray-100 dark:bg-[#202124] rounded-lg z-10 relative -mx-3.5 py-2.5 pl-16 -mt-2 hidden lg:flex">
 					<svg
 						width="64"
 						height="64"
@@ -307,12 +285,12 @@ export const Toc = ({ headings, objective }) => {
 					>
 						<path
 							d="M32 0C32 0 32 7.92318 32 13C21 13 12 22 12 33C12 44 21 53 32 53C43 53 52 44 52 33C52 22 43 13 32.5 13"
-							stroke="#EEE3FC"
+							stroke="#b3d7ff"
 							strokeWidth="4"
 						/>
 						<motion.path
 							d="M32 0C32 0 32 7.92318 32 13C21 13 12 22 12 33C12 44 21 53 32 53C43 53 52 44 52 33C52 22 43 13 32.5 13"
-							stroke="#b386fd"
+							stroke="#248aff"
 							strokeWidth="4"
 							animate={bottom ? "filled" : "empty"}
 							variants={{
@@ -327,11 +305,11 @@ export const Toc = ({ headings, objective }) => {
 							fillRule="evenodd"
 							clipRule="evenodd"
 							d="M25 30.5C24.4477 30.5 24 30.9477 24 31.5V39.5C24 40.0523 24.4477 40.5 25 40.5H39C39.5523 40.5 40 40.0523 40 39.5V31.5C40 30.9477 39.5523 30.5 39 30.5H25ZM31.5 33.5C30.9477 33.5 30.5 33.9477 30.5 34.5V37.5C30.5 38.0523 30.9477 38.5 31.5 38.5H32.5C33.0523 38.5 33.5 38.0523 33.5 37.5V34.5C33.5 33.9477 33.0523 33.5 32.5 33.5H31.5Z"
-							fill="#b1f042"
+							fill="#248aff"
 						/>
 						<motion.path
 							d="M36.5 30.5V29C36.5 26.5147 34.4853 24.5 32 24.5V24.5C29.5147 24.5 27.5 26.5147 27.5 29V30.5"
-							stroke="#b1f042"
+							stroke="#248aff"
 							strokeWidth="3"
 							animate={bottom ? "open" : "closed"}
 							variants={{
@@ -352,7 +330,7 @@ export const Toc = ({ headings, objective }) => {
 					) : (
 						<div className="text-base-tight flex flex-col">
 							<span className="font-bold">Congratulations!</span>
-							<span className="text-gray-600">
+							<span className="text-gray-600 dark:text-gray-400">
 								You’ve thoroughly explored this topic!
 							</span>
 						</div>
