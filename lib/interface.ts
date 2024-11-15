@@ -8,6 +8,10 @@ export interface simpleBlogCard {
 	_id: string;
 }
 
+export interface PostListProps {
+	posts: simpleBlogCard[];
+}
+
 export interface Tags {
 	name: string;
 	slug: { current: string };
@@ -18,6 +22,9 @@ export interface Tag {
 	name: string;
 	slug: { current: string };
 	_id: string;
+}
+export interface TagListProps {
+	tags: Tag[];
 }
 
 export interface fullBlog {

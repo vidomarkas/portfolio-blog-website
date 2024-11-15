@@ -60,9 +60,6 @@ export const Toc = ({ headings, objective }) => {
 		const activeParentHeight = activeParent?.clientHeight || 0;
 		const activeParentCenter = activeParentOffset + activeParentHeight;
 
-		console.log("activeId", activeId);
-		console.log("activeItem", activeItem);
-
 		if (lastItem === activeParent) {
 			setTimeout(() => {
 				setBottom(true);
@@ -90,7 +87,6 @@ export const Toc = ({ headings, objective }) => {
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
-				console.log("entries", entries);
 				entries.forEach((entry) => {
 					const id = entry.target.getAttribute("id");
 
@@ -200,7 +196,6 @@ export const Toc = ({ headings, objective }) => {
 										heading.style === "h3" ||
 										heading.style === "h4"
 									) {
-										// console.log("heading", heading);
 										const headingText = heading.children
 											.map((child: any) => child.text)
 											.join(" ");
