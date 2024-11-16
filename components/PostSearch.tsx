@@ -18,7 +18,7 @@ const PostSearch = ({ searchQuery, setSearchQuery }: PostSearchProps) => {
 				onChange={(e) => onEnterSearchQuery(e.target.value)}
 				placeholder="Search"
 			/>
-			<Search className="absolute top-1/2 -translate-y-1/2 left-2 w-4 h-4" />
+			<Search className="absolute top-1/2 -translate-y-1/2 left-3 w-4 h-4" />
 		</div>
 	);
 };
