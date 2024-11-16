@@ -34,7 +34,6 @@ export default async function Blog() {
 					technology, and updates.
 				</p>
 				<SubscribeForm />
-				<div>(confetti when subscribed)</div>
 			</div>
 			<PostsContainer tags={tags} />
 		</div>
