@@ -3,34 +3,33 @@ import Image from "next/image";
 import Link from "next/link";
 import { client, urlFor } from "@/lib/sanity";
 import PostSkeleton from "./PostSkeleton";
-import { span } from "framer-motion/client";
 
-async function getData(selectedTagSlugs) {
-	// Build tag filter part of the query
+async function getData(selectedTagSlugs: string[], searchQuery: string) {
 	const tagFilter =
 		selectedTagSlugs.length > 0
-			? `&& count(tags[@->slug.current in [${selectedTagSlugs.map((slug) => `"${slug}"`).join(", ")}]]) > 0`
+			? `&& count(tags[@->slug.current in [${selectedTagSlugs.map((slug: string) => `"${slug}"`).join(", ")}]]) > 0`
 			: "";
 
-	// Construct the full query with the tag filter
+	const searchFilter = searchQuery
+		? `&& (title match "${searchQuery}*" || excerpt match "${searchQuery}*" || pt::text(body) match "${searchQuery}*")`
+		: "";
+
 	const query = `
-      *[_type == 'post' ${tagFilter}] | order(_createdAt desc) {
-        title,
-        "slug": slug.current,
-        featuredImage,
-        excerpt,
-        tags[]-> {_id, slug, name}
-      }
-    `;
+        *[_type == 'post' ${tagFilter} ${searchFilter}] | order(_createdAt desc) {
+          title,
+          "slug": slug.current,
+          featuredImage,
+          excerpt,
+          tags[]-> {_id, slug, name}
+        }
+      `;
 
 	const data = await client.fetch(query);
 
 	return data;
 }
 
-const PostsList = ({ selectedTagIDs }) => {
-	// const posts = await getData(selectedTagIDs);
-
+const PostsList = ({ selectedTagIDs, searchQuery }) => {
 	const [posts, setPosts] = useState([]);
 	const [loading, setLoading] = useState(true);
 
@@ -38,13 +37,13 @@ const PostsList = ({ selectedTagIDs }) => {
 		// Fetch data when selectedTagIDs changes
 		const fetchPosts = async () => {
 			setLoading(true);
-			const fetchedPosts = await getData(selectedTagIDs);
+			const fetchedPosts = await getData(selectedTagIDs, searchQuery);
 			setPosts(fetchedPosts);
 			setLoading(false);
 		};
 
 		fetchPosts();
-	}, [selectedTagIDs]); // Re-fetch posts when selectedTagIDs changes
+	}, [selectedTagIDs, searchQuery]);
 
 	if (loading)
 		return (
@@ -57,8 +56,8 @@ const PostsList = ({ selectedTagIDs }) => {
 
 	if (posts.length === 0)
 		return (
-			<div className="bg-red-100 h-full">
-				No posts found for the selected tags.
+			<div className="h-full flex flex-col items-center">
+				<p className="text-center">No results found.</p>
 			</div>
 		);
 
@@ -68,17 +67,13 @@ const PostsList = ({ selectedTagIDs }) => {
 				<div className="mb-4 text-[#666] dark:text-gray-400">
 					Showing only articles in{" "}
 					<span className=" text-white">
-						{selectedTagIDs.length === 1 ? (
-							<span className="capitalize text-white">
-								{selectedTagIDs[0]}
-							</span>
-						) : selectedTagIDs.length === 2 ? (
-							selectedTagIDs.join(" and ")
-						) : (
-							selectedTagIDs.slice(0, -1).join(", ") +
-							", and " +
-							selectedTagIDs[selectedTagIDs.length - 1]
-						)}
+						{selectedTagIDs.length === 1
+							? selectedTagIDs[0]
+							: selectedTagIDs.length === 2
+								? selectedTagIDs.join(" and ")
+								: selectedTagIDs.slice(0, -1).join(", ") +
+									", and " +
+									selectedTagIDs[selectedTagIDs.length - 1]}
 					</span>{" "}
 					{selectedTagIDs.length === 1 ? "category" : "categories"}.
 				</div>
@@ -90,9 +85,9 @@ const PostsList = ({ selectedTagIDs }) => {
 					key={id}
 					className="border-b first-of-type:pt-0 first-of-type:mt-0 last-of-type:border-b-0 pt-4 pb-8 mt-4 dark:border-[#363636]"
 				>
-					<Link href={`blog/${post.slug}`} className="">
+					<Link href={`blog/${post.slug}`}>
 						<div className="flex justify-between gap-x-4">
-							<div className="">
+							<div>
 								<h2 className="text-2xl font-bold mb-3">
 									{post.title}
 								</h2>
