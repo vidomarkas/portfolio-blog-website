@@ -37,7 +37,7 @@ export default async function Home() {
 				<header className="py-20">
 					<div className="container ">
 						<h1 className="text-7xl font-semibold	mb-8">
-							Building the Web. Performance. <br />
+							Building the Web: Performance. <br />
 							Custom Builds. UX. & More
 						</h1>
 					</div>
