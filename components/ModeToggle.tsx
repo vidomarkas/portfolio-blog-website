@@ -36,6 +36,7 @@ export function ModeToggle() {
 				) : (
 					<Moon className="h-[24px] w-[24px]" />
 				)}
+
 				<span className="sr-only">Toggle theme</span>
 			</div>
 		</div>

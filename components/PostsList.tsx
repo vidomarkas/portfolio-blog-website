@@ -66,7 +66,7 @@ const PostsList = ({ selectedTagIDs, searchQuery }) => {
 			{selectedTagIDs?.length > 0 && (
 				<div className="mb-4 text-[#666] dark:text-gray-400">
 					Showing only articles in{" "}
-					<span className=" text-white">
+					<span className=" text-black dark:text-white">
 						{selectedTagIDs.length === 1
 							? selectedTagIDs[0]
 							: selectedTagIDs.length === 2

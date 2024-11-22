@@ -61,7 +61,9 @@ export const Navbar = () => {
 							})}
 						</ul>
 					</nav>
-					<ModeToggle />
+					<span className="h-[24px] w-[24px]">
+						<ModeToggle />
+					</span>
 				</div>
 			</div>
 		</header>

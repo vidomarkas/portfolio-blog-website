@@ -27,8 +27,8 @@ const About = () => {
 				"/assets/img/tripscout.webp",
 			]}
 		>
-			<section className="grid h-screen w-full place-content-center bg-white">
-				<p className="flex items-center gap-2 text-3xl font-bold uppercase text-black">
+			<section className="grid h-screen w-full place-content-center ">
+				<p className="flex items-center gap-2 text-3xl font-bold uppercase ">
 					{/* <FiMousePointer /> */}
 					<span>Hover me</span>
 				</p>
