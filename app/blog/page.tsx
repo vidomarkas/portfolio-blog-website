@@ -1,5 +1,5 @@
 import { client } from "@/lib/sanity";
-import { simpleBlogCard, Tags } from "@/lib/interface";
+import { Tags } from "@/lib/interface";
 
 import SubscribeForm from "@/components/SubscribeForm";
 import PostsContainer from "@/components/PostsContainer";

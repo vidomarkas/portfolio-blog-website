@@ -7,9 +7,31 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
+import { client } from "@/lib/sanity";
+import { div } from "framer-motion/client";
 
-const page = () => {
-	const projects = [
+export const revalidate = 3600;
+
+async function getData() {
+	const query = `{
+    "projects": *[_type == "work"] {
+        title,
+        slug,
+        industry, year,
+         services[]-> {_id, slug, name},
+         technologies[]-> {_id, slug, name}
+    }}`;
+
+	const data = client.fetch(query);
+
+	return data;
+}
+
+const page = async () => {
+	const { projects } = await getData();
+
+	console.log("projects", projects);
+	const projectsFake = [
 		{ title: "Work1", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
 		{ title: "Work2", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
 		{ title: "Work3", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
@@ -36,7 +58,7 @@ const page = () => {
 			<section>
 				<div className="container">
 					<div className="grid grid-cols-2 gap-4">
-						{projects.map((project, index) => {
+						{projectsFake.map((project, index) => {
 							return (
 								<div
 									key={index}
@@ -86,104 +108,65 @@ const page = () => {
 					<h2 id="other_work" className="text-3xl font-bold mb-10">
 						Other notable projects
 					</h2>
-					{/* <ul>
-						<li className="py-4 border-b border-black">bla bla</li>
-						<li className="py-4 border-b border-black">bla bla</li>
-						<li className="py-4 border-b border-black">bla bla</li>
-						<li className="py-4 border-b border-black">bla bla</li>
-						<li className="py-4 border-b border-black">bla bla</li>
-						<li className="py-4 border-b border-black">bla bla</li>
-						<li className="py-4 border-b border-black">bla bla</li>
-						<li className="py-4 border-b border-black">bla bla</li>
-						<li className="py-4 border-b border-black">bla bla</li>
-						<li className="py-4 border-b border-black">bla bla</li>
-					</ul> */}
 					<div className="grid grid-cols-12 w-full text-start font-medium">
-						<div className="col-span-4">Client</div>
-						<div className="col-span-2">Industry</div>
+						<div className="col-span-3">Client</div>
+						<div className="col-span-3">Industry</div>
 						<div className="col-span-5">Services</div>
 						<div className="col-span-1">Year</div>
 					</div>
 					<Accordion type="single" collapsible>
-						<AccordionItem value="item-1">
-							<AccordionTrigger>
-								<div className="grid grid-cols-12 w-full text-start">
-									<div className="col-span-4">
-										Merkur Casinos
+						{projects.map((project, index) => (
+							<AccordionItem
+								key={index}
+								value={`item-${index + 1}`}
+							>
+								<AccordionTrigger>
+									<div className="grid grid-cols-12 w-full text-start">
+										<div className="col-span-3">
+											{project.title}
+										</div>
+										<div className="col-span-3">
+											{project.industry}
+										</div>
+										<div className="col-span-5">
+											{project.services[0].name}
+										</div>
+										<div className="col-span-1">
+											{project.year}
+										</div>
 									</div>
-									<div className="col-span-2">Gambling</div>
-									<div className="col-span-5">
-										Front & Backend Development
+								</AccordionTrigger>
+								<AccordionContent>
+									<div>
+										<h2 className="text-xl">
+											All Services
+										</h2>
+										{project.services.map(
+											(service, index) => (
+												<div key={index}>
+													{service.name}
+												</div>
+											)
+										)}
 									</div>
-									<div className="col-span-1">2025</div>
-								</div>
-							</AccordionTrigger>
-							<AccordionContent>
-								Yes. It adheres to the WAI-ARIA design pattern.
-							</AccordionContent>
-						</AccordionItem>
-						<AccordionItem value="item-2">
-							<AccordionTrigger>
-								<div className="grid grid-cols-12 w-full text-start">
-									<div className="col-span-4">Merkur</div>
-									<div className="col-span-2">Gambling</div>
-									<div className="col-span-5">
-										Front & Backend Development
-									</div>
-									<div className="col-span-1">2025</div>
-								</div>
-							</AccordionTrigger>
-							<AccordionContent>
-								Yes. It adheres to the WAI-ARIA design pattern.
-							</AccordionContent>
-						</AccordionItem>
-						<AccordionItem value="item-3">
-							<AccordionTrigger>
-								<div className="grid grid-cols-12 w-full text-start">
-									<div className="col-span-4">
-										Ernest Gordon
-									</div>
-									<div className="col-span-2">Gambling</div>
-									<div className="col-span-5">
-										Front & Backend Development
-									</div>
-									<div className="col-span-1">2025</div>
-								</div>
-							</AccordionTrigger>
-							<AccordionContent>
-								Yes. It adheres to the WAI-ARIA design pattern.
-							</AccordionContent>
-						</AccordionItem>
-						<AccordionItem value="item-4">
-							<AccordionTrigger>
-								<div className="grid grid-cols-12 w-full text-start">
-									<div className="col-span-4">Merkur</div>
-									<div className="col-span-2">Gambling</div>
-									<div className="col-span-5">
-										Front & Backend Development
-									</div>
-									<div className="col-span-1">2025</div>
-								</div>
-							</AccordionTrigger>
-							<AccordionContent>
-								Yes. It adheres to the WAI-ARIA design pattern.
-							</AccordionContent>
-						</AccordionItem>
-						<AccordionItem value="item-5">
-							<AccordionTrigger>
-								<div className="grid grid-cols-12 w-full text-start">
-									<div className="col-span-4">Merkur</div>
-									<div className="col-span-2">Gambling</div>
-									<div className="col-span-5">
-										Front & Backend Development
-									</div>
-									<div className="col-span-1">2025</div>
-								</div>
-							</AccordionTrigger>
-							<AccordionContent>
-								Yes. It adheres to the WAI-ARIA design pattern.
-							</AccordionContent>
-						</AccordionItem>
+									{project.technologies &&
+										project.technologies.length > 0 && (
+											<div>
+												<h2 className="text-xl">
+													Technologies
+												</h2>
+												{project.technologies.map(
+													(service, index) => (
+														<div key={index}>
+															{service.name}
+														</div>
+													)
+												)}
+											</div>
+										)}
+								</AccordionContent>
+							</AccordionItem>
+						))}
 					</Accordion>
 				</div>
 			</section>
