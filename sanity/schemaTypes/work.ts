@@ -39,6 +39,18 @@ export const work = defineType({
       validation: (rule: Rule) => rule.max(200).error('Max 200 characters'),
     },
     {
+      name: 'industry',
+      type: 'string',
+      title: 'Industry',
+      validation: (rule: Rule) => rule.required().error('Industry is required'),
+    },
+    {
+      name: 'year',
+      type: 'number',
+      title: 'Year',
+      validation: (rule: Rule) => rule.required().error('Year is required'),
+    },
+    {
       name: 'body',
       type: 'array',
       title: 'Body',
@@ -50,10 +62,16 @@ export const work = defineType({
       ],
     },
     {
-      name: 'tags',
-      title: 'Tags',
+      name: 'services',
+      title: 'Services',
       type: 'array',
-      of: [{type: 'reference', to: [{type: 'tag'}]}],
+      of: [{type: 'reference', to: [{type: 'service'}]}],
+    },
+    {
+      name: 'technologies',
+      title: 'Technologies',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'technology'}]}],
     },
   ],
 })
