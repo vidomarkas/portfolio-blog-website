@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CircleChevronRight } from "lucide-react";
+import { CircleChevronRight, Briefcase } from "lucide-react";
 import { simpleBlogCard } from "@/lib/interface";
 import { client, urlFor } from "@/lib/sanity";
 
@@ -37,13 +37,40 @@ export default async function Home() {
 				<header className="py-20">
 					<div className="container ">
 						<h1 className="text-7xl font-semibold	mb-8">
-							Building the Web: Performance. <br />
-							Custom Builds. UX. & More
+							Hi, I'm Vik, <br /> Web Developer <br />& Digital
+							Creator
 						</h1>
 					</div>
 				</header>
+				<section className="container py-20">
+					<div className="text-container">
+						<p className="text-[22px] mb-4">
+							I'm all about creating high-performing, thoughtfully
+							crafted web experiences that make a difference. To
+							me, quality isn’t just about speed—it’s about
+							building something that’s tailored and built to
+							last. From bespoke builds to seamless integrations,
+							I bring together the technical and creative sides of
+							web development to build solutions that genuinely
+							work. This is my approach, my work, and a glimpse
+							into what drives me forward.
+						</p>
+						<Link
+							href="/about"
+							className="font-semibold text-[22px]"
+						>
+							More about me
+						</Link>
+					</div>
+				</section>
 				<section>
-					<div className="container grid grid-cols-1 md:grid-cols-2 grid-rows-6 gap-10 lg:gap-32">
+					<div className="container grid grid-cols-1 md:grid-cols-2 grid-rows-6 gap-10 lg:gap-32 py-20">
+						<div className="flex items-center justify-center">
+							<h2 className="text-6xl font-bold">
+								Some of my work
+							</h2>
+						</div>
+
 						<Link href="/work/trulawn" className="work-item">
 							<div className="work-item__image">
 								<Image
@@ -133,29 +160,19 @@ export default async function Home() {
 								</div>
 							</div>
 						</Link>
+						<div className="flex justify-center">
+							<Link
+								href="/work"
+								className="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-xl flex gap-x-2 group h-fit"
+								title="See more of Viktoras Domarkas work"
+							>
+								<Briefcase />
+								See More Work
+							</Link>
+						</div>
 					</div>
 				</section>
-				<section className="container py-20">
-					<div className="text-container">
-						<p className="text-[22px] mb-4">
-							I'm all about creating high-performing, thoughtfully
-							crafted web experiences that make a difference. To
-							me, quality isn’t just about speed—it’s about
-							building something that’s tailored and built to
-							last. From bespoke builds to seamless integrations,
-							I bring together the technical and creative sides of
-							web development to build solutions that genuinely
-							work. This is my approach, my work, and a glimpse
-							into what drives me forward.
-						</p>
-						<Link
-							href="/about"
-							className="font-semibold text-[22px]"
-						>
-							More about me
-						</Link>
-					</div>
-				</section>
+
 				{posts && posts?.length > 0 && (
 					<section className="py-20">
 						<div className="container flex justify-between">
@@ -165,8 +182,11 @@ export default async function Home() {
 									Take a look at what’s new in my blog.
 								</span>
 							</h2>
-							<Link href="/blog" className="text-2xl underline">
-								All Articles
+							<Link
+								href="/blog"
+								className="text-xl hover:underline underline-offset-8"
+							>
+								See All Posts
 							</Link>
 						</div>
 
@@ -227,7 +247,7 @@ export default async function Home() {
 						</div>
 					</section>
 				)}
-				<section className="py-20">
+				<section className="py-20 my-20">
 					<div className="text-container">
 						<h2 className="text-2xl">
 							Get in touch (click to copy)
