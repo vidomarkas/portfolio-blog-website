@@ -6,34 +6,39 @@ import React, { useRef } from "react";
 
 const About = () => {
 	return (
-		<MouseImageTrail
-			renderImageBuffer={50}
-			rotationRange={25}
-			images={[
-				"/assets/img/archive.webp",
-				"/assets/img/athotel.webp",
-				"/assets/img/days.webp",
-				"/assets/img/invision.webp",
-				"/assets/img/tripscout.webp",
-				"/assets/img/archive.webp",
-				"/assets/img/athotel.webp",
-				"/assets/img/days.webp",
-				"/assets/img/invision.webp",
-				"/assets/img/tripscout.webp",
-				"/assets/img/archive.webp",
-				"/assets/img/athotel.webp",
-				"/assets/img/days.webp",
-				"/assets/img/invision.webp",
-				"/assets/img/tripscout.webp",
-			]}
-		>
-			<section className="grid h-screen w-full place-content-center ">
-				<p className="flex items-center gap-2 text-3xl font-bold uppercase ">
-					{/* <FiMousePointer /> */}
-					<span>Hover me</span>
-				</p>
+		<>
+			<MouseImageTrail
+				renderImageBuffer={50}
+				rotationRange={25}
+				images={[
+					"/assets/img/archive.webp",
+					"/assets/img/athotel.webp",
+					"/assets/img/days.webp",
+					"/assets/img/invision.webp",
+					"/assets/img/tripscout.webp",
+					"/assets/img/archive.webp",
+					"/assets/img/athotel.webp",
+					"/assets/img/days.webp",
+					"/assets/img/invision.webp",
+					"/assets/img/tripscout.webp",
+					"/assets/img/archive.webp",
+					"/assets/img/athotel.webp",
+					"/assets/img/days.webp",
+					"/assets/img/invision.webp",
+					"/assets/img/tripscout.webp",
+				]}
+			>
+				<section className="grid h-screen w-full place-content-center ">
+					<p className="flex items-center gap-2 text-3xl font-bold uppercase ">
+						{/* <FiMousePointer /> */}
+						<span>Hover me</span>
+					</p>
+				</section>
+			</MouseImageTrail>
+			<section>
+				<h2 className="text-7xl">My Stack</h2>
 			</section>
-		</MouseImageTrail>
+		</>
 	);
 };
 

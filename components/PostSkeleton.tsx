@@ -5,16 +5,16 @@ const PostSkeleton = () => {
 			className="animate-pulse flex justify-between gap-x-4 border-b first-of-type:pt-0 first-of-type:mt-0 last-of-type:border-b-0 pt-4 pb-8 mt-4 dark:border-[#363636]"
 		>
 			<div className="w-full">
-				<div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-				<div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
-				<div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-				<div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
-				<div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
-				<div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+				<div className="h-2.5 bg-[#f9fafb] dark:bg-[#202021] rounded-full  w-48 mb-4"></div>
+				<div className="h-2 bg-[#f9fafb] dark:bg-[#202021] rounded-full  max-w-[480px] mb-2.5"></div>
+				<div className="h-2 bg-[#f9fafb] dark:bg-[#202021] rounded-full  mb-2.5"></div>
+				<div className="h-2 bg-[#f9fafb] dark:bg-[#202021] rounded-full  max-w-[440px] mb-2.5"></div>
+				<div className="h-2 bg-[#f9fafb] dark:bg-[#202021] rounded-full  max-w-[460px] mb-2.5"></div>
+				<div className="h-2 bg-[#f9fafb] dark:bg-[#202021] rounded-full  max-w-[360px]"></div>
 			</div>
-			<div className="flex items-center justify-center bg-gray-300 dark:bg-gray-700 h-[200px] w-[300px] overflow-hidden shrink-0 grow-0 rounded-xl">
+			<div className="flex items-center justify-center bg-[#f9fafb] dark:bg-[#202021] h-[200px] w-[300px] overflow-hidden shrink-0 grow-0 rounded-xl">
 				<svg
-					className="w-10 h-10 text-gray-200 dark:text-gray-600"
+					className="w-10 h-10 text-[#f9fafb] dark:text-[#202021]"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="currentColor"
