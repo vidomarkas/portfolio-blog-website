@@ -22,6 +22,13 @@ export const work = defineType({
       validation: (rule: Rule) => rule.required().error('Slug is required'),
     },
     {
+      name: 'featured',
+      type: 'boolean',
+      title: 'Featured',
+      initialValue: false,
+      description: 'Check this box to mark as featured work',
+    },
+    {
       name: 'featuredImage',
       type: 'image',
       title: 'Featured Image',

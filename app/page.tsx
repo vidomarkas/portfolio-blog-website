@@ -64,7 +64,7 @@ export default async function Home() {
 					</div>
 				</section>
 				<section>
-					<div className="container grid grid-cols-1 md:grid-cols-2 grid-rows-6 gap-10 lg:gap-32 py-20">
+					<div className="container grid grid-cols-1 md:grid-cols-2 grid-rows-4 gap-10 lg:gap-32 py-20">
 						<div className="flex items-center justify-center">
 							<h2 className="text-6xl font-bold">
 								Some of my work
@@ -124,7 +124,7 @@ export default async function Home() {
 								</div>
 							</div>
 						</Link>
-						<Link href="/" className="work-item">
+						{/* <Link href="/" className="work-item">
 							<div className="work-item__image">
 								<Image
 									src="/assets/img/invision.webp"
@@ -141,8 +141,8 @@ export default async function Home() {
 									To be announced
 								</div>
 							</div>
-						</Link>
-						<Link href="/work#other_work" className="work-item">
+						</Link> */}
+						{/* <Link href="/work#other_work" className="work-item">
 							<div className="work-item__image">
 								<Image
 									src="/assets/img/archive.webp"
@@ -159,7 +159,7 @@ export default async function Home() {
 									Get to see some my past work
 								</div>
 							</div>
-						</Link>
+						</Link> */}
 						<div className="flex justify-center">
 							<Link
 								href="/work"

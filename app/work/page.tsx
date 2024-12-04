@@ -8,19 +8,26 @@ import {
 	AccordionTrigger,
 } from "@/components/ui/accordion";
 import { client } from "@/lib/sanity";
-import { div } from "framer-motion/client";
 
 export const revalidate = 3600;
 
 async function getData() {
 	const query = `{
-    "projects": *[_type == "work"] {
+    "projects": *[_type == "work" && (!defined(featured) || featured == false)]| order(year desc) {
         title,
         slug,
         industry, year,
          services[]-> {_id, slug, name},
          technologies[]-> {_id, slug, name}
-    }}`;
+    },
+    "featuredProjects": *[_type == "work" && featured == true]| order(year desc) {
+        title,
+        slug,
+        industry, year,
+         services[]-> {_id, slug, name},
+         technologies[]-> {_id, slug, name}
+    }
+         }`;
 
 	const data = client.fetch(query);
 
@@ -28,22 +35,22 @@ async function getData() {
 }
 
 const page = async () => {
-	const { projects } = await getData();
+	const { projects, featuredProjects } = await getData();
 
 	console.log("projects", projects);
-	const projectsFake = [
-		{ title: "Work1", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
-		{ title: "Work2", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
-		{ title: "Work3", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
-		{ title: "Work4", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
-	];
+	console.log("featuredProjects", featuredProjects);
+	// const projectsFake = [
+	// 	{ title: "Work1", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
+	// 	{ title: "Work2", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
+	// 	{ title: "Work3", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
+	// ];
 	return (
 		<main className="mt-32">
 			<section className="container py-20">
 				<div className="grid lg:grid-cols-2 gap-x-6 gap-y-8 lg:gap-y-0 ">
 					<div className="col-span-1 ">
 						<h1 className="text-7xl font-bold whitespace-nowrap">
-							My Work
+							Featured Work
 						</h1>
 					</div>
 					<div className="col-span-1  flex lg:justify-end">
@@ -57,12 +64,12 @@ const page = async () => {
 			</section>
 			<section>
 				<div className="container">
-					<div className="grid grid-cols-2 gap-4">
-						{projectsFake.map((project, index) => {
+					<div className="grid grid-cols-1 gap-4">
+						{featuredProjects.map((project, index) => {
 							return (
 								<div
 									key={index}
-									className="bg-[#f9fafb] dark:bg-[#202021] rounded-3xl p-8 aspect-square flex flex-col justify-between"
+									className="bg-[#f9fafb] dark:bg-[#202021] rounded-3xl p-8 flex flex-col justify-between"
 								>
 									<div>
 										<Image
@@ -76,7 +83,7 @@ const page = async () => {
 										<h2 className="text-xl font-semibold mb-4">
 											{project.title}
 										</h2>
-										<ul className="flex gap-x-4">
+										{/* <ul className="flex gap-x-4">
 											{project.tags.map((tag, i) => (
 												<li
 													key={i}
@@ -85,13 +92,13 @@ const page = async () => {
 													{tag}
 												</li>
 											))}
-										</ul>
+										</ul> */}
 									</div>
 								</div>
 							);
 						})}
 					</div>
-					<div className="flex justify-center my-20">
+					{/* <div className="flex justify-center my-20">
 						<Link
 							href="/work"
 							className="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-xl flex gap-x-2 group h-fit"
@@ -99,7 +106,7 @@ const page = async () => {
 						>
 							Load More
 						</Link>
-					</div>
+					</div> */}
 				</div>
 			</section>
 
