@@ -7,9 +7,9 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { client } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 
-export const revalidate = 3600;
+export const revalidate = 100;
 
 async function getData() {
 	const query = `{
@@ -23,6 +23,8 @@ async function getData() {
     "featuredProjects": *[_type == "work" && featured == true]| order(year desc) {
         title,
         slug,
+          featuredImage,
+        excerpt,
         industry, year,
          services[]-> {_id, slug, name},
          technologies[]-> {_id, slug, name}
@@ -37,7 +39,7 @@ async function getData() {
 const page = async () => {
 	const { projects, featuredProjects } = await getData();
 
-	console.log("projects", projects);
+	// console.log("projects", projects);
 	console.log("featuredProjects", featuredProjects);
 	// const projectsFake = [
 	// 	{ title: "Work1", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
@@ -64,26 +66,33 @@ const page = async () => {
 			</section>
 			<section>
 				<div className="container">
-					<div className="grid grid-cols-1 gap-4">
+					<div className="grid grid-cols-1 gap-8">
 						{featuredProjects.map((project, index) => {
 							return (
-								<div
+								<Link
 									key={index}
-									className="bg-[#f9fafb] dark:bg-[#202021] rounded-3xl p-8 flex flex-col justify-between"
+									href={`/work/${project.slug.current}`}
+									className="p-2 bg-black  dark:bg-white rounded-3xl"
+									title="See more of Viktoras Domarkas work"
 								>
-									<div>
-										<Image
-											src="/assets/img/days.webp"
-											width={200}
-											height={200}
-											alt="days"
-										/>
-									</div>
-									<div className="">
-										<h2 className="text-xl font-semibold mb-4">
-											{project.title}
-										</h2>
-										{/* <ul className="flex gap-x-4">
+									<div className="bg-[#f9fafb] dark:bg-[#202021] rounded-3xl grid grid-cols-12 overflow-hidden min-h-[500px]">
+										<div className="col-span-7 relative ">
+											<Image
+												className="absolute w-full object-cover  h-full "
+												src={urlFor(
+													project.featuredImage
+												).url()}
+												width={600}
+												height={600}
+												alt="days"
+											/>
+										</div>
+										<div className="col-span-5 p-8">
+											<h2 className="text-2xl font-semibold mb-4">
+												{project.title}
+											</h2>
+											<div>{project.excerpt}</div>
+											{/* <ul className="flex gap-x-4">
 											{project.tags.map((tag, i) => (
 												<li
 													key={i}
@@ -93,8 +102,9 @@ const page = async () => {
 												</li>
 											))}
 										</ul> */}
+										</div>
 									</div>
-								</div>
+								</Link>
 							);
 						})}
 					</div>

@@ -41,5 +41,4 @@ export interface fullWork {
 	title: string;
 	body: any;
 	featuredImage: any;
-	headings?: HTMLHeadingElement | Array<string>;
 }

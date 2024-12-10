@@ -250,7 +250,7 @@ export default async function Home() {
 				<section className="py-20 my-20">
 					<div className="text-container">
 						<h2 className="text-2xl">
-							Get in touch (click to copy)
+							Get in touch (click the email to copy)
 						</h2>
 
 						<CopyEmail email="hey@domarkas.co" />
