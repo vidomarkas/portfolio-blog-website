@@ -17,8 +17,8 @@ async function getData() {
         title,
         slug,
         industry, year,
-         services[]-> {_id, slug, name},
-         technologies[]-> {_id, slug, name}
+        services[]-> {_id, slug, name},
+        technologies[]-> {_id, slug, name}
     },
     "featuredProjects": *[_type == "work" && featured == true]| order(year desc) {
         title,
@@ -66,42 +66,59 @@ const page = async () => {
 			</section>
 			<section>
 				<div className="container">
-					<div className="grid grid-cols-1 gap-8">
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 						{featuredProjects.map((project, index) => {
 							return (
 								<Link
 									key={index}
 									href={`/work/${project.slug.current}`}
-									className="p-2 bg-black  dark:bg-white rounded-3xl"
-									title="See more of Viktoras Domarkas work"
+									className="project"
+									title={`See ${project.title} project in detail`}
 								>
-									<div className="bg-[#f9fafb] dark:bg-[#202021] rounded-3xl grid grid-cols-12 overflow-hidden min-h-[500px]">
-										<div className="col-span-7 relative ">
-											<Image
-												className="absolute w-full object-cover  h-full "
-												src={urlFor(
-													project.featuredImage
-												).url()}
-												width={600}
-												height={600}
-												alt="days"
-											/>
-										</div>
-										<div className="col-span-5 p-8">
+									<div className="aspect-video rounded-3xl overflow-hidden project-image">
+										<Image
+											className="object-cover w-full "
+											src={urlFor(
+												project.featuredImage
+											).url()}
+											width={600}
+											height={600}
+											alt={project.title}
+										/>
+									</div>
+
+									<div className="">
+										<div className="pt-8">
 											<h2 className="text-2xl font-semibold mb-4">
 												{project.title}
 											</h2>
-											<div>{project.excerpt}</div>
+											{/* <div>{project.excerpt}</div> */}
+											<ul className="flex gap-x-4">
+												{project.services &&
+													project.services.map(
+														(service, i) => (
+															<li
+																key={i}
+																className="rounded-full border border-black dark:border-white px-2.5 text-sm"
+															>
+																{service.name}
+															</li>
+														)
+													)}
+											</ul>
 											{/* <ul className="flex gap-x-4">
-											{project.tags.map((tag, i) => (
-												<li
-													key={i}
-													className="rounded-full border border-black dark:border-white px-2.5 text-sm"
-												>
-													{tag}
-												</li>
-											))}
-										</ul> */}
+												{project.technologies &&
+													project.technologies.map(
+														(tech, i) => (
+															<li
+																key={i}
+																className="rounded-full border border-black dark:border-white px-2.5 text-sm"
+															>
+																{tech.name}
+															</li>
+														)
+													)}
+											</ul> */}
 										</div>
 									</div>
 								</Link>
@@ -172,13 +189,14 @@ const page = async () => {
 												<h2 className="text-xl">
 													Technologies
 												</h2>
-												{project.technologies.map(
-													(service, index) => (
-														<div key={index}>
-															{service.name}
-														</div>
-													)
-												)}
+												{project.technologies &&
+													project.technologies.map(
+														(service, index) => (
+															<div key={index}>
+																{service.name}
+															</div>
+														)
+													)}
 											</div>
 										)}
 								</AccordionContent>

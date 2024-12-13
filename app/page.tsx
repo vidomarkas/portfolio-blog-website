@@ -124,42 +124,7 @@ export default async function Home() {
 								</div>
 							</div>
 						</Link>
-						{/* <Link href="/" className="work-item">
-							<div className="work-item__image">
-								<Image
-									src="/assets/img/invision.webp"
-									width={540}
-									height={640}
-									alt="days"
-								/>
-							</div>
-							<div className="work-item__info">
-								<div className="work-item__title">
-									https://www.s1jobs.com/resources/remote-working-guide/
-								</div>
-								<div className="work-item__description">
-									To be announced
-								</div>
-							</div>
-						</Link> */}
-						{/* <Link href="/work#other_work" className="work-item">
-							<div className="work-item__image">
-								<Image
-									src="/assets/img/archive.webp"
-									width={540}
-									height={640}
-									alt="days"
-								/>
-							</div>
-							<div className="work-item__info">
-								<div className="work-item__title">
-									Other work
-								</div>
-								<div className="work-item__description">
-									Get to see some my past work
-								</div>
-							</div>
-						</Link> */}
+
 						<div className="flex justify-center">
 							<Link
 								href="/work"
@@ -167,7 +132,7 @@ export default async function Home() {
 								title="See more of Viktoras Domarkas work"
 							>
 								<Briefcase />
-								See More Work
+								See More
 							</Link>
 						</div>
 					</div>

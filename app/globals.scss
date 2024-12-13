@@ -137,6 +137,31 @@ h6 {
 	}
 }
 
+.project {
+	&:hover {
+		img {
+			transform: scale(1.1);
+			// cursor: pointer;
+		}
+		.project-image {
+			transform: scale(0.95);
+		}
+	}
+
+	img {
+		transition: var(--custom-transition);
+	}
+	.project-image {
+		transition: var(--custom-transition);
+	}
+}
+
+// .project-image {
+// 	transition: var(--custom-transition);
+// 	&:hover {
+
+// 	}
+// }
 .work-item:hover {
 	img {
 		transform: scale(1.1);
@@ -146,14 +171,26 @@ h6 {
 
 .work-item__image:hover {
 	transform: scale(0.95);
-	// transition: all 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
-	// cursor: pointer;
 }
 
 .text-container {
 	max-width: 760px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.container-wide {
+	width: 100%;
+	max-width: 1400px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+.container-full {
+	width: 100%;
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
 .header {
