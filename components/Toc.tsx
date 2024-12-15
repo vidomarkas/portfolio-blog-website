@@ -9,7 +9,7 @@ import { slugify } from "../lib/utils";
 import { useWindowSize } from "@uidotdev/usehooks";
 import { ArrowRight } from "lucide-react";
 
-export const Toc = ({ headings, objective }) => {
+export const Toc = ({ headings }) => {
 	const [activeId, setActiveId] = useState("");
 	const headingsList = useRef(null);
 	const scrollRef = useRef(0);
@@ -317,19 +317,30 @@ export const Toc = ({ headings, objective }) => {
 							}}
 						/>
 					</svg>
-					{objective ? (
-						<div className="text-base-tight flex flex-col">
-							<span className="font-bold">{objective}</span>
-							<span className="text-gray-50">{objective}</span>
-						</div>
-					) : (
-						<div className="text-base-tight flex flex-col">
+
+					<>
+						<div
+							className={clsx(" text-base-tight flex flex-col", {
+								block: bottom,
+								hidden: !bottom,
+							})}
+						>
 							<span className="font-bold">Congratulations!</span>
 							<span className="text-gray-600 dark:text-gray-400">
 								You’ve thoroughly explored this topic!
 							</span>
 						</div>
-					)}
+						<div
+							className={clsx(" text-base-tight min-h-12", {
+								hidden: bottom,
+								block: !bottom,
+							})}
+						>
+							<span className="text-gray-600 dark:text-gray-400 ">
+								Keep on reading
+							</span>
+						</div>
+					</>
 				</div>
 				<div className={clsx("absolute bottom-10 left-10")}>
 					<Confetti
