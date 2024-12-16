@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CircleChevronRight, Briefcase } from "lucide-react";
-import { simpleBlogCard } from "@/lib/interface";
+// import { simpleBlogCard } from "@/lib/interface";
 import { client, urlFor } from "@/lib/sanity";
 
 import CopyEmail from "@/components/CopyEmail";
@@ -10,16 +10,26 @@ import whatsapp from "../public/assets/icons/whatsapp.svg";
 import instaIcon from "../public/assets/icons/instagram.svg";
 import linkedIcon from "../public/assets/icons/linkedin.svg";
 
-export const revalidate = 3600;
+// export const revalidate = 3600;
+export const revalidate = 100;
 
 async function getData() {
-	const query = `
-    *[_type == 'post']| order(_createdAt desc)[0...5]{
+	const query = `{
+    "posts": *[_type == 'post']| order(_createdAt desc)[0...5]{
         title,
         "slug": slug.current,
         featuredImage,
         tags[]-> {_id, slug, name}
-    }`;
+    },
+     "featuredProjects": *[_type == "work" && featured == true]| order(year desc) {
+            title,
+            slug,
+              featuredImage,
+            excerpt,
+            industry, year,
+             services[]-> {_id, slug, name},
+             technologies[]-> {_id, slug, name}
+    }}`;
 
 	const data = client.fetch(query);
 
@@ -27,9 +37,7 @@ async function getData() {
 }
 
 export default async function Home() {
-	const posts: simpleBlogCard[] = await getData();
-
-	// console.log("mydata", data);
+	const { posts, featuredProjects } = await getData();
 
 	return (
 		<div className="flex flex-col min-h-screen mt-32">
@@ -37,15 +45,15 @@ export default async function Home() {
 				<header className="py-20">
 					<div className="container ">
 						<h1 className="text-7xl font-semibold	mb-8">
-							Hi, I'm Vik, <br /> Web Developer <br />& Digital
+							Hi, I’m Vik, <br /> Web Developer <br />& Digital
 							Creator
 						</h1>
 					</div>
 				</header>
 				<section className="container py-20">
 					<div className="text-container">
-						<p className="text-[22px] mb-4">
-							I'm all about creating high-performing, thoughtfully
+						<p className="text-[22px] mb-4 text-zinc-600 dark:text-zinc-400">
+							I’m all about creating high-performing, thoughtfully
 							crafted web experiences that make a difference. To
 							me, quality isn’t just about speed—it’s about
 							building something that’s tailored and built to
@@ -64,66 +72,54 @@ export default async function Home() {
 					</div>
 				</section>
 				<section>
-					<div className="container grid grid-cols-1 md:grid-cols-2 grid-rows-4 gap-10 lg:gap-32 py-20">
+					<div
+						className={`container grid grid-cols-1 md:grid-cols-2 grid-rows-${featuredProjects.length + 1} gap-10 lg:gap-32 py-20`}
+					>
 						<div className="flex items-center justify-center">
 							<h2 className="text-6xl font-bold">
 								Some of my work
 							</h2>
 						</div>
+						{featuredProjects.map((project, index) => {
+							return (
+								<Link
+									key={index}
+									href={`/work/${project.slug.current}`}
+									className="work-item"
+									title={`See ${project.title} project in detail`}
+								>
+									<div className="work-item__image">
+										<Image
+											src={urlFor(
+												project.featuredImage
+											).url()}
+											width={800}
+											height={800}
+											alt={project.title}
+										/>
+									</div>
+									<div className="work-item__info">
+										<h2 className="work-item__title mb-4">
+											{project.title}
+										</h2>
 
-						<Link href="/work/trulawn" className="work-item">
-							<div className="work-item__image">
-								<Image
-									src="/assets/img/days.webp"
-									width={540}
-									height={640}
-									alt="days"
-								/>
-							</div>
-							<div className="work-item__info">
-								<div className="work-item__title">Trulawn</div>
-								<div className="work-item__description">
-									Full stack application
-								</div>
-							</div>
-						</Link>
-						<Link href="/" className="work-item">
-							<div className="work-item__image">
-								<Image
-									src="/assets/img/tripscout.webp"
-									width={540}
-									height={640}
-									alt="days"
-								/>
-							</div>
-							<div className="work-item__info">
-								<div className="work-item__title">
-									Budget Manager
-								</div>
-								<div className="work-item__description">
-									React Native Application
-								</div>
-							</div>
-						</Link>
-						<Link href="/" className="work-item">
-							<div className="work-item__image">
-								<Image
-									src="/assets/img/athotel.webp"
-									width={540}
-									height={640}
-									alt="days"
-								/>
-							</div>
-
-							<div className="work-item__info">
-								<div className="work-item__title">
-									Family Hub
-								</div>
-								<div className="work-item__description">
-									full stack application
-								</div>
-							</div>
-						</Link>
+										<ul className="flex gap-x-4 gap-y-2 flex-wrap">
+											{project.services &&
+												project.services.map(
+													(service, i) => (
+														<li
+															key={i}
+															className="rounded-full border border-gray-300 dark:border-white px-2.5 text-sm"
+														>
+															{service.name}
+														</li>
+													)
+												)}
+										</ul>
+									</div>
+								</Link>
+							);
+						})}
 
 						<div className="flex justify-center">
 							<Link
@@ -143,7 +139,7 @@ export default async function Home() {
 						<div className="container flex justify-between">
 							<h2 className="text-2xl">
 								The latest.{" "}
-								<span className="text-gray-500">
+								<span className="text-zinc-600 dark:text-zinc-400">
 									Take a look at what’s new in my blog.
 								</span>
 							</h2>
