@@ -1,12 +1,11 @@
 "use client";
-import Link from "next/link";
+// import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export const Footer = () => {
 	const [year, setYear] = useState(new Date().getFullYear());
 
 	useEffect(() => {
-		// Update the year when the component mounts
 		setYear(new Date().getFullYear());
 	}, []);
 
@@ -14,7 +13,7 @@ export const Footer = () => {
 		<footer className="border-t border-[#eaeaea] dark:border-[#333] py-8 px-4">
 			<div className="container mx-auto flex justify-between dark:text-[#eaeaea] text-[#333]">
 				<p>Copyright © {year} Viktoras Domarkas</p>
-				<ul className="flex space-x-3">
+				{/* <ul className="flex space-x-3">
 					<li>
 						<Link href="/cookies" className="hover:underline">
 							Cookies
@@ -28,7 +27,7 @@ export const Footer = () => {
 							Privacy policy
 						</Link>
 					</li>
-				</ul>
+				</ul> */}
 			</div>
 		</footer>
 	);

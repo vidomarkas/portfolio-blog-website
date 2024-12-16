@@ -47,9 +47,6 @@ const StickyImage = ({ imgUrl }) => {
 	return (
 		<motion.div
 			style={{
-				backgroundImage: `url(${imgUrl})`,
-				backgroundSize: "cover",
-				backgroundPosition: "center",
 				height: `calc(100vh - ${IMG_PADDING * 2}px)`,
 				top: IMG_PADDING,
 				scale,
@@ -57,6 +54,14 @@ const StickyImage = ({ imgUrl }) => {
 			ref={targetRef}
 			className="sticky z-0 overflow-hidden rounded-3xl"
 		>
+			<Image
+				priority
+				src={imgUrl}
+				alt="example"
+				width={1000}
+				height={1000}
+				className="w-full h-full object-cover"
+			/>
 			<motion.div
 				className="absolute inset-0 bg-neutral-950/70"
 				style={{

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { client, urlFor } from "@/lib/sanity";
 import { fullBlog } from "@/lib/interface";
 import Image from "next/image";
@@ -6,6 +7,7 @@ import { slugify } from "@/lib/utils";
 import { TextParallaxContent } from "@/components/BlogHeader";
 import { Toc } from "@/components/Toc";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export const revalidate = 3600;
 
@@ -56,9 +58,7 @@ export default async function BlogArticle({
 			>
 				<div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-8 xl:gap-6 pt-10 relative">
 					<aside className="lg:col-start-2 lg:col-span-3">
-						{headings?.length > 0 && (
-							<Toc headings={headings} objective={null} />
-						)}
+						{headings?.length > 0 && <Toc headings={headings} />}
 					</aside>
 					<div className="lg:col-span-7 pb-12">
 						<article
@@ -70,16 +70,26 @@ export default async function BlogArticle({
 								components={myPortableTextComponents}
 							/>
 						</article>
+						<div className="flex justify-center">
+							<Link
+								href="/blog"
+								className="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-xl flex gap-x-2 group h-fit hover:brightness-75	transition-all duration-100"
+								title="Back to blog"
+							>
+								<ArrowLeft />
+								Back to Blog
+							</Link>
+						</div>
 					</div>
 				</div>
 			</TextParallaxContent>
-			<section className="container">
+			{/* <section className="container">
 				<div>
 					actions
 					<Link href="/blog">Back to the Blog</Link>
 				</div>
-			</section>
-			<section className="bg-[#f9f9f9] p-40">more to read</section>
+			</section> */}
+			{/* <section className="bg-[#f9f9f9] p-40">more to read</section> */}
 		</>
 	);
 }

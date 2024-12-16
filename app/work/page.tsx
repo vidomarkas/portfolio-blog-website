@@ -40,7 +40,7 @@ const page = async () => {
 	const { projects, featuredProjects } = await getData();
 
 	// console.log("projects", projects);
-	console.log("featuredProjects", featuredProjects);
+	// console.log("featuredProjects", featuredProjects);
 	// const projectsFake = [
 	// 	{ title: "Work1", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
 	// 	{ title: "Work2", tags: ["DEV", "UX", "UI", "Branding", "Motion"] },
@@ -56,10 +56,10 @@ const page = async () => {
 						</h1>
 					</div>
 					<div className="col-span-1  flex lg:justify-end">
-						<p className="text-justify max-w-xl lg:max-w-md text-[#666] dark:text-gray-400">
+						<p className="text-justify max-w-xl lg:max-w-md ttext-zinc-600 dark:text-zinc-400">
 							I have had the privilege of working with some of the
 							most well-known companies in the world. Here are
-							some of the works I'm most proud of.
+							some of the works I’m most proud of.
 						</p>
 					</div>
 				</div>
@@ -93,7 +93,7 @@ const page = async () => {
 												{project.title}
 											</h2>
 											{/* <div>{project.excerpt}</div> */}
-											<ul className="flex gap-x-4">
+											<ul className="flex gap-x-4 gap-y-2 flex-wrap">
 												{project.services &&
 													project.services.map(
 														(service, i) => (
@@ -163,7 +163,8 @@ const page = async () => {
 											{project.industry}
 										</div>
 										<div className="col-span-5">
-											{project.services[0].name}
+											{project.services &&
+												project.services[0].name}
 										</div>
 										<div className="col-span-1">
 											{project.year}
@@ -175,13 +176,14 @@ const page = async () => {
 										<h2 className="text-xl">
 											All Services
 										</h2>
-										{project.services.map(
-											(service, index) => (
-												<div key={index}>
-													{service.name}
-												</div>
-											)
-										)}
+										{project.services &&
+											project.services.map(
+												(service, index) => (
+													<div key={index}>
+														{service.name}
+													</div>
+												)
+											)}
 									</div>
 									{project.technologies &&
 										project.technologies.length > 0 && (

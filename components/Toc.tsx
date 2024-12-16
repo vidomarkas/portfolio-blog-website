@@ -70,7 +70,7 @@ export const Toc = ({ headings }) => {
 
 		scrollBarHeight.set(activeParentCenter);
 		scrollCollapsedHeight.set(activeParentOffset);
-	}, [activeId]);
+	}, [activeId, bottom, scrollBarHeight, scrollCollapsedHeight]);
 
 	useEffect(() => {
 		if (win.width < 1024) {

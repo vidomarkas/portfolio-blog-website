@@ -88,16 +88,6 @@
 	}
 }
 
-body {
-	// background-image: url("/assets/noise.png"),
-	// 	radial-gradient(ellipse at top, #242937, transparent),
-	// 	radial-gradient(ellipse at bottom, #171340, transparent);
-
-	// background-image: url("/assets/noise.png");
-	// background-size: 200px, 100%, 200%;
-	// background-attachment: fixed;
-}
-
 h2,
 h3,
 h4,
@@ -118,7 +108,7 @@ h6 {
 	}
 
 	&__image {
-		@apply rounded-[24px] aspect-[3.3/4] overflow-hidden;
+		@apply rounded-[24px] aspect-[3.5/3.8] overflow-hidden;
 		transition: var(--custom-transition);
 		img {
 			object-fit: cover;
@@ -127,13 +117,13 @@ h6 {
 		}
 	}
 	&__info {
-		@apply text-center mt-10;
+		@apply mt-10;
 	}
 	&__title {
 		@apply font-medium text-[22px];
 	}
 	&__description {
-		@apply text-[18px] text-[#666666];
+		@apply text-[18px] text-zinc-600 dark:text-zinc-400;
 	}
 }
 
@@ -219,15 +209,6 @@ h6 {
 	padding-bottom: 20px;
 }
 
-.social-icons-list {
-	li {
-	}
-}
-
-.cards-container {
-	// margin-left: calc((100% - 1200px) / 2 + 1rem);
-}
-
 .card-view {
 	transform: translateX(calc((100vw - 1200px) / 2 + 1rem));
 	// position: relative;
@@ -248,9 +229,6 @@ h6 {
 	img {
 		transition: var(--custom-transition);
 	}
-}
-
-.card-description {
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

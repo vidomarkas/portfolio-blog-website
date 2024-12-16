@@ -2,7 +2,7 @@
 import { useState } from "react";
 import TagList from "@/components/TagList";
 import PostsList from "@/components/PostsList";
-import { TagListProps, PostListProps } from "@/lib/interface";
+import { TagListProps } from "@/lib/interface";
 import PostSearch from "./PostSearch";
 
 interface PostsContainerProps {

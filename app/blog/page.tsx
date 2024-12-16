@@ -8,10 +8,18 @@ export const revalidate = 3600;
 
 async function getData() {
 	const query = `{
-    "sanityTags": *[_type == "tag" && count(*[_type == "post" && references(^._id)]) > 0] {
-        name,
-        slug
-    }}`;
+        "sanityTags": *[
+            _type == "tag" && 
+            count(*[
+                _type == "post" && 
+                references(^._id) && 
+                !(_id in path("drafts.*"))
+            ]) > 0
+        ] {
+            name,
+            slug
+        }
+    }`;
 
 	const data = client.fetch(query);
 
@@ -29,7 +37,7 @@ export default async function Blog() {
 				<h1 className="text-6xl font-bold mb-3">
 					Inside the Industry: Stories and Insights
 				</h1>
-				<p className="text-[#666] font-medium mb-6">
+				<p className="text-zinc-600 dark:text-zinc-400 font-medium mb-6">
 					Subscribe to learn about new product features, the latest
 					news in the industry, and updates.
 				</p>

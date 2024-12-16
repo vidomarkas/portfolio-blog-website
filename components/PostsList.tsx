@@ -64,7 +64,7 @@ const PostsList = ({ selectedTagIDs, searchQuery }) => {
 	return (
 		<>
 			{selectedTagIDs?.length > 0 && (
-				<div className="mb-4 text-[#666] dark:text-gray-400">
+				<div className="mb-4 text-zinc-600 dark:text-zinc-400">
 					Showing only articles in{" "}
 					<span className=" text-black dark:text-white">
 						{selectedTagIDs.length === 1
@@ -91,7 +91,7 @@ const PostsList = ({ selectedTagIDs, searchQuery }) => {
 								<h2 className="text-2xl font-bold mb-3">
 									{post.title}
 								</h2>
-								<p className="text-[#666] dark:text-gray-400 mb-4">
+								<p className="text-zinc-600 dark:text-zinc-400 mb-4">
 									{post.excerpt}
 								</p>
 								<div className="flex mb-2 font-medium gap-4">
