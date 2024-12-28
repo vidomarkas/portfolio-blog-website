@@ -30,6 +30,8 @@ export interface TagListProps {
 export interface fullBlog {
 	slug: string;
 	title: string;
+	excerpt: string;
+
 	body: any;
 	featuredImage: any;
 	publishedAt: Date;
@@ -39,6 +41,14 @@ export interface fullBlog {
 export interface fullWork {
 	slug: string;
 	title: string;
+	excerpt: string;
+	industry: string;
+	year: number;
+	type: string;
+	liveUrl: string;
+	sourceUrl: string;
 	body: any;
 	featuredImage: any;
+	services: Array<string>;
+	technologies: Array<string>;
 }

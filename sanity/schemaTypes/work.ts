@@ -29,6 +29,16 @@ export const work = defineType({
       description: 'Check this box to mark as featured work',
     },
     {
+      title: 'Live URL',
+      name: 'liveUrl',
+      type: 'url',
+    },
+    {
+      title: 'Source URL',
+      name: 'sourceUrl',
+      type: 'url',
+    },
+    {
       name: 'featuredImage',
       type: 'image',
       title: 'Featured Image',
@@ -44,6 +54,11 @@ export const work = defineType({
       type: 'text',
       title: 'Excerpt (Max 200 characters)',
       validation: (rule: Rule) => rule.max(200).error('Max 200 characters'),
+    },
+    {
+      name: 'type',
+      type: 'string',
+      title: 'Project type',
     },
     {
       name: 'industry',
