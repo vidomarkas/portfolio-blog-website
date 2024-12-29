@@ -8,13 +8,14 @@ import Confetti from "react-dom-confetti";
 import { slugify } from "../lib/utils";
 import { useWindowSize } from "@uidotdev/usehooks";
 import { ArrowRight } from "lucide-react";
+import { Heading } from "@/lib/interface";
 
-export const Toc = ({ headings }) => {
+export const Toc = ({ headings }: { headings: Heading[] }) => {
 	const [activeId, setActiveId] = useState("");
-	const headingsList = useRef(null);
+	const headingsList = useRef<HTMLUListElement>(null);
 	const scrollRef = useRef(0);
 	const [tocCollapsed, setTocCollapsed] = useState(false);
-	const innerContentContainerRef = useRef(null);
+	const innerContentContainerRef = useRef<HTMLDivElement>(null);
 	const collapsedHeight = 120;
 	const [innerContainerHeight, setInnerContainerHeight] = useState(0);
 	const [bottom, setBottom] = useState(false);
@@ -73,13 +74,13 @@ export const Toc = ({ headings }) => {
 	}, [activeId, bottom, scrollBarHeight, scrollCollapsedHeight]);
 
 	useEffect(() => {
-		if (win.width < 1024) {
+		if (win.width !== null && win.width < 1024) {
 			setTocCollapsed(true);
 		} else {
 			setTocCollapsed(false);
 		}
 
-		if (innerContainerHeight > win.height - 300) {
+		if (win.height !== null && innerContainerHeight > win.height - 300) {
 			setTocCollapsed(true);
 		}
 	}, [win, innerContainerHeight]);
@@ -91,7 +92,7 @@ export const Toc = ({ headings }) => {
 					const id = entry.target.getAttribute("id");
 
 					if (entry.isIntersecting) {
-						setActiveId(id);
+						if (id) setActiveId(id);
 						scrollRef.current = window.scrollY;
 					} else {
 						const diff = scrollRef.current - window.scrollY;
@@ -116,7 +117,9 @@ export const Toc = ({ headings }) => {
 		const observeHeadings = () => {
 			headings.forEach((heading) => {
 				const headingId = slugify(
-					heading.children.map((child: any) => child.text).join(" ")
+					heading.children
+						.map((child: { text: string }) => child.text)
+						.join(" ")
 				);
 
 				const currentHeading = document.getElementById(headingId);
@@ -134,7 +137,9 @@ export const Toc = ({ headings }) => {
 		return () => {
 			headings.forEach((heading) => {
 				const headingId = slugify(
-					heading.children.map((child: any) => child.text).join(" ")
+					heading.children
+						.map((child: { text: string }) => child.text)
+						.join(" ")
 				);
 
 				const currentHeading = document.getElementById(headingId);
@@ -197,7 +202,10 @@ export const Toc = ({ headings }) => {
 										heading.style === "h4"
 									) {
 										const headingText = heading.children
-											.map((child: any) => child.text)
+											.map(
+												(child: { text: string }) =>
+													child.text
+											)
 											.join(" ");
 
 										const slug = slugify(headingText);

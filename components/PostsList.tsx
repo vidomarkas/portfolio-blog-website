@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { client, urlFor } from "@/lib/sanity";
 import PostSkeleton from "./PostSkeleton";
+import { Post } from "@/lib/interface";
 
 async function getData(selectedTagSlugs: string[], searchQuery: string) {
 	const tagFilter =
@@ -29,7 +30,12 @@ async function getData(selectedTagSlugs: string[], searchQuery: string) {
 	return data;
 }
 
-const PostsList = ({ selectedTagIDs, searchQuery }) => {
+interface PostsListProps {
+	selectedTagIDs: string[];
+	searchQuery: string;
+}
+
+const PostsList = ({ selectedTagIDs, searchQuery }: PostsListProps) => {
 	const [posts, setPosts] = useState([]);
 	const [loading, setLoading] = useState(true);
 
@@ -79,7 +85,7 @@ const PostsList = ({ selectedTagIDs, searchQuery }) => {
 				</div>
 			)}
 
-			{posts?.map((post, id) => (
+			{posts?.map((post: Post, id: number) => (
 				<article
 					role="listitem"
 					key={id}

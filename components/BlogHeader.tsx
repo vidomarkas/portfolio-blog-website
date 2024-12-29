@@ -7,13 +7,21 @@ import Link from "next/link";
 
 const IMG_PADDING = 12;
 
+interface TextParallaxContentProps {
+	imgUrl: string;
+	heading: string;
+	timeToRead: number;
+	date: string;
+	children: React.ReactNode;
+}
+
 export const TextParallaxContent = ({
 	imgUrl,
 	heading,
 	timeToRead,
 	date,
 	children,
-}) => {
+}: TextParallaxContentProps) => {
 	return (
 		<div
 			style={{
@@ -34,7 +42,7 @@ export const TextParallaxContent = ({
 	);
 };
 
-const StickyImage = ({ imgUrl }) => {
+const StickyImage = ({ imgUrl }: { imgUrl: string }) => {
 	const targetRef = useRef(null);
 	const { scrollYProgress } = useScroll({
 		target: targetRef,
@@ -72,7 +80,13 @@ const StickyImage = ({ imgUrl }) => {
 	);
 };
 
-const OverlayCopy = ({ heading, date, timeToRead }) => {
+interface OverlayCopyProps {
+	heading: string;
+	date: string;
+	timeToRead: number;
+}
+
+const OverlayCopy = ({ heading, date, timeToRead }: OverlayCopyProps) => {
 	const targetRef = useRef(null);
 	const { scrollYProgress } = useScroll({
 		target: targetRef,

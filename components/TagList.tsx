@@ -26,14 +26,18 @@ export default function TagList({
 
 				return (
 					<span
-						onClick={() => onToggleTag(tag.slug.current)}
+						onClick={() =>
+							tag.slug && onToggleTag(tag.slug.current)
+						}
 						key={id}
 						className={clsx(
 							"px-4 py-1  rounded-full whitespace-nowrap select-none cursor-pointer",
 							{
 								"bg-gray-100 dark:bg-[#363636]":
+									tag.slug &&
 									!selectedTagIDs.includes(tag.slug.current),
 								"bg-black text-white dark:bg-white dark:text-black":
+									tag.slug?.current &&
 									selectedTagIDs.includes(tag.slug.current),
 							}
 						)}

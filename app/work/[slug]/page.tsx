@@ -1,5 +1,5 @@
 import { client, urlFor } from "@/lib/sanity";
-import { fullWork } from "@/lib/interface";
+import { fullWork, PortableTextImage } from "@/lib/interface";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 import { Code, ArrowUpRight } from "lucide-react";
@@ -34,7 +34,7 @@ async function getData(slug: string) {
 
 const ptComponents = {
 	types: {
-		image: ({ value }: any) => {
+		image: ({ value }: { value: PortableTextImage }) => {
 			if (!value?.asset?._ref) {
 				return null;
 			}
@@ -59,7 +59,7 @@ const ptComponents = {
 	},
 };
 
-export default async function BlogArticle({
+export default async function WorkDetailsPage({
 	params,
 }: {
 	params: { slug: string };
@@ -94,7 +94,6 @@ export default async function BlogArticle({
 		body,
 		gallery,
 	} = data;
-	// console.log("data", data);
 
 	return (
 		<div className=" mt-40">
@@ -149,7 +148,7 @@ export default async function BlogArticle({
 			{/* featured images */}
 			<section className="grid grid-cols-2 grid-rows-2 gap-4 p-4">
 				{gallery &&
-					gallery.map((image, i) => (
+					gallery.map((image, i: number) => (
 						<div
 							key={i}
 							className="w-full rounded-xl overflow-hidden"

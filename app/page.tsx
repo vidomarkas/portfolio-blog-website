@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CircleChevronRight, Briefcase } from "lucide-react";
 // import { simpleBlogCard } from "@/lib/interface";
+import { FeaturedProject, Post, Tag } from "@/lib/interface";
 import { client, urlFor } from "@/lib/sanity";
 
 import CopyEmail from "@/components/CopyEmail";
@@ -24,11 +25,11 @@ async function getData() {
      "featuredProjects": *[_type == "work" && featured == true]| order(year desc) {
             title,
             slug,
-              featuredImage,
+            featuredImage,
             excerpt,
             industry, year,
-             services[]-> {_id, slug, name},
-             technologies[]-> {_id, slug, name}
+            services[]-> {_id, slug, name},
+            technologies[]-> {_id, slug, name}
     }}`;
 
 	const data = client.fetch(query);
@@ -80,46 +81,51 @@ export default async function Home() {
 								Some of my work
 							</h2>
 						</div>
-						{featuredProjects.map((project, index) => {
-							return (
-								<Link
-									key={index}
-									href={`/work/${project.slug.current}`}
-									className="work-item"
-									title={`See ${project.title} project in detail`}
-								>
-									<div className="work-item__image">
-										<Image
-											src={urlFor(
-												project.featuredImage
-											).url()}
-											width={800}
-											height={800}
-											alt={project.title}
-										/>
-									</div>
-									<div className="work-item__info">
-										<h2 className="work-item__title mb-4">
-											{project.title}
-										</h2>
+						{featuredProjects.map(
+							(project: FeaturedProject, index: number) => {
+								return (
+									<Link
+										key={index}
+										href={`/work/${project.slug.current}`}
+										className="work-item"
+										title={`See ${project.title} project in detail`}
+									>
+										<div className="work-item__image">
+											<Image
+												src={urlFor(
+													project.featuredImage
+												).url()}
+												width={800}
+												height={800}
+												alt={project.title}
+											/>
+										</div>
+										<div className="work-item__info">
+											<h2 className="work-item__title mb-4">
+												{project.title}
+											</h2>
 
-										<ul className="flex gap-x-4 gap-y-2 flex-wrap">
-											{project.services &&
-												project.services.map(
-													(service, i) => (
-														<li
-															key={i}
-															className="rounded-full border border-gray-300 dark:border-white px-2.5 text-sm"
-														>
-															{service.name}
-														</li>
-													)
-												)}
-										</ul>
-									</div>
-								</Link>
-							);
-						})}
+											<ul className="flex gap-x-4 gap-y-2 flex-wrap">
+												{project.services &&
+													project.services.map(
+														(
+															service,
+															i: number
+														) => (
+															<li
+																key={i}
+																className="rounded-full border border-gray-300 dark:border-white px-2.5 text-sm"
+															>
+																{service.name}
+															</li>
+														)
+													)}
+											</ul>
+										</div>
+									</Link>
+								);
+							}
+						)}
 
 						<div className="flex justify-center">
 							<Link
@@ -155,7 +161,7 @@ export default async function Home() {
 							className="scroll-container flex w-full gap-x-10 overflow-x-scroll snap-x scroll-smooth snap-mandatory pt-10"
 							role="list"
 						>
-							{posts?.map((post, id) => (
+							{posts?.map((post: Post, id: number) => (
 								<article
 									role="listitem"
 									key={id}
@@ -181,7 +187,7 @@ export default async function Home() {
 												<div className="card-description">
 													<div className="mb-2 font-medium text-white">
 														{post?.tags?.map(
-															(tag) => (
+															(tag: Tag) => (
 																<p
 																	key={
 																		tag?._id
