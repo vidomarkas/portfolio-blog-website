@@ -57,7 +57,7 @@ const SubscribeForm = () => {
 			{status === "success" && (
 				<div>
 					<p className="bg-[#adfa1b] inline-block dark:text-black px-4 py-2 rounded-full">
-						<CircleCheck className="inline mr-2" /> Check your email
+						<CircleCheck className="inline mr-2" /> Check your inbox
 						to confirm your subscription!
 					</p>
 				</div>
