@@ -24,9 +24,10 @@ const About = () => {
 								</h1>
 								<div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
 									<p>
-										Hi, I’m Viktoras — a self-taught web
-										developer from Lithuania, now based in
-										the UK. I’m passionate about creating
+										I&apos;m a self-taught web developer
+										from Lithuania, now based in the UK,
+										where I&apos;ve been living for 15
+										years. I’m passionate about creating
 										meaningful and functional digital
 										experiences. What began as a curious
 										exploration into coding in 2017 has

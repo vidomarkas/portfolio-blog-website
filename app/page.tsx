@@ -66,7 +66,7 @@ export default async function Home() {
 						</p>
 						<Link
 							href="/about"
-							className="font-semibold text-[22px]"
+							className="font-semibold text-[22px] underline-offset-8 hover:underline"
 						>
 							More about me
 						</Link>
@@ -134,7 +134,7 @@ export default async function Home() {
 								title="See more of Viktoras Domarkas work"
 							>
 								<Briefcase />
-								See More
+								See more of my work
 							</Link>
 						</div>
 					</div>
