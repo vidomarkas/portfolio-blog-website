@@ -2,7 +2,6 @@ import { client, urlFor } from "@/lib/sanity";
 import { fullWork } from "@/lib/interface";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
-// import { slugify } from "@/lib/utils";
 import { Code, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
@@ -22,22 +21,67 @@ async function getData(slug: string) {
     services[]-> {_id, slug, name},
     technologies[]-> {_id, slug, name},
     body,
-    featuredImage,
+    gallery,
 
 }[0]`;
 
 	const data = await client.fetch(query);
 
+	// console.log("Fetched data:", data);
+
 	return data;
 }
+
+const ptComponents = {
+	types: {
+		image: ({ value }: any) => {
+			if (!value?.asset?._ref) {
+				return null;
+			}
+
+			return (
+				<Image
+					alt={value.alt || " "}
+					loading="lazy"
+					height={value.height || 500}
+					width={value.width || 500}
+					src={urlFor(value).url()}
+					style={{
+						width: "100%",
+						marginBottom: "24px",
+					}}
+				/>
+			);
+		},
+		//   code: ({ value }: any) => {
+		//     return <CodeBlock value={value} />
+		//   },
+	},
+};
 
 export default async function BlogArticle({
 	params,
 }: {
 	params: { slug: string };
 }) {
+	const data: fullWork | null = await getData(params.slug);
+
+	if (!data) {
+		return (
+			<div className="mt-40">
+				<header className="container pb-6">
+					<h1 className="text-6xl font-semibold mb-4">
+						Article Not Found
+					</h1>
+					<p>
+						The article you&apos;re looking for doesn&apos;t exist.
+					</p>
+				</header>
+			</div>
+		);
+	}
+
 	const {
-		featuredImage,
 		title,
 		industry,
 		excerpt,
@@ -48,16 +92,12 @@ export default async function BlogArticle({
 		services,
 		technologies,
 		body,
-	}: fullWork = await getData(params.slug);
+		gallery,
+	} = data;
 	// console.log("data", data);
-
-	{
-		console.log(technologies);
-	}
 
 	return (
 		<div className=" mt-40">
-			{/* <div className="container border border-black">breadcrumbs</div> */}
 			<header className="container pb-6">
 				<div>
 					<h1 className="text-6xl font-semibold mb-4">{title}</h1>
@@ -108,41 +148,33 @@ export default async function BlogArticle({
 			</section>
 			{/* featured images */}
 			<section className="grid grid-cols-2 grid-rows-2 gap-4 p-4">
-				<Image
-					src={urlFor(featuredImage).url()}
-					alt={title}
-					width={800}
-					height={400}
-					className="w-full rounded-xl"
-				/>
-				<Image
-					src={urlFor(featuredImage).url()}
-					alt={title}
-					width={800}
-					height={400}
-					className="w-full rounded-xl"
-				/>
-				<Image
-					src={urlFor(featuredImage).url()}
-					alt={title}
-					width={800}
-					height={400}
-					className="w-full rounded-xl"
-				/>
-				<Image
-					src={urlFor(featuredImage).url()}
-					alt={title}
-					width={800}
-					height={400}
-					className="w-full rounded-xl"
-				/>
+				{gallery &&
+					gallery.map((image, i) => (
+						<div
+							key={i}
+							className="w-full rounded-xl overflow-hidden"
+						>
+							<Image
+								src={urlFor(image).url()}
+								alt={image.alt || `Gallery Image ${i + 1}`}
+								width={800}
+								height={400}
+								className="object-cover object-center w-full h-full aspect-video"
+							/>
+						</div>
+					))}
 			</section>
 
 			<div className="container ">
 				<div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-8 xl:gap-6 pt-10 mt-8 relative ">
 					<div className="lg:col-span-9 pb-12">
-						<article className="prose max-w-prose dark:prose-invert">
-							<PortableText value={body} />
+						<article
+							className={`prose max-w-prose dark:prose-invert source-serif`}
+						>
+							<PortableText
+								value={body}
+								components={ptComponents}
+							/>
 						</article>
 					</div>
 					<aside className="lg:col-span-3 ">

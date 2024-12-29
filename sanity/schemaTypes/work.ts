@@ -28,6 +28,19 @@ export const work = defineType({
       initialValue: false,
       description: 'Check this box to mark as featured work',
     },
+
+    {
+      name: 'gallery',
+      type: 'array',
+      of: [{type: 'image'}],
+      options: {
+        layout: 'grid',
+      },
+      title: 'Gallery',
+      description: 'Select 4 images',
+      hidden: ({document}) => !document?.featured,
+    },
+
     {
       title: 'Live URL',
       name: 'liveUrl',

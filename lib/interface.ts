@@ -48,7 +48,7 @@ export interface fullWork {
 	liveUrl: string;
 	sourceUrl: string;
 	body: any;
-	featuredImage: any;
+	gallery: any;
 	services: Array<string>;
 	technologies: Array<string>;
 }
