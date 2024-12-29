@@ -38,8 +38,8 @@ export default async function Blog() {
 					Inside the Industry: Stories and Insights
 				</h1>
 				<p className="text-zinc-600 dark:text-zinc-400 font-medium mb-6">
-					Subscribe to learn about new product features, the latest
-					news in the industry, and updates.
+					Subscribe to learn about new products, the latest news in
+					the industry, and updates.
 				</p>
 				<SubscribeForm />
 			</div>

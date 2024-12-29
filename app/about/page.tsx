@@ -24,18 +24,19 @@ const About = () => {
 								</h1>
 								<div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
 									<p>
-										Hi, I’m Viktoras, a self-taught web
-										developer from Lithuania with a passion
-										for building meaningful and functional
-										digital experiences. My journey into
-										coding started as a curiosity in 2017,
-										but it quickly turned into a career I
-										deeply enjoy.
+										Hi, I’m Viktoras — a self-taught web
+										developer from Lithuania, now based in
+										the UK. I’m passionate about creating
+										meaningful and functional digital
+										experiences. What began as a curious
+										exploration into coding in 2017 has
+										grown into a fulfilling career that I
+										genuinely love.
 									</p>
 
 									<p>
 										Over the years, I’ve worked on a wide
-										range of projects—from improving small
+										range of projects — from improving small
 										business websites to creating advanced
 										web applications and custom solutions
 										for businesses. I love solving problems
@@ -51,23 +52,23 @@ const About = () => {
 										I’m passionate about personal growth and
 										constantly challenging myself to learn
 										and improve. That same mindset drives my
-										approach to development—I’m always
+										approach to development — I’m always
 										looking for better ways to do things and
 										exploring the latest technologies.
 									</p>
 
 									<p>
-										When I’m not in front of my screen, you
-										might find me hitting the gym,
-										traveling, or brainstorming ideas for my
-										next project. I believe in balancing
-										work with life and drawing inspiration
-										from the world around me to bring fresh
-										ideas to everything I do.
+										When I’m not coding, you’ll often find
+										me at the gym, exploring new places, or
+										brainstorming ideas for my next project.
+										I believe in balancing work with life
+										and drawing inspiration from the world
+										around me to bring fresh ideas to
+										everything I do.
 									</p>
 
 									<p>
-										Let’s connect—whether you want to chat
+										Let’s connect — whether you want to chat
 										about web development, share
 										experiences, or collaborate on something
 										exciting!

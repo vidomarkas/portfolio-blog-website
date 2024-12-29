@@ -136,9 +136,9 @@ const page = async () => {
 					</div> */}
 				</div>
 			</section>
-			<section className="py-20 text-center bg-red-100 dark:bg-red-900 text-red-900 dark:text-red-100">
+			{/* <section className="py-20 text-center bg-red-100 dark:bg-red-900 text-red-900 dark:text-red-100">
 				logo carousel
-			</section>
+			</section> */}
 
 			<section className="py-20 ">
 				<div className="container">
