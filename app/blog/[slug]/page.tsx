@@ -63,7 +63,7 @@ export default async function BlogArticle({
 					<div className="lg:col-span-7 pb-12">
 						<article
 							id="blogPostBody"
-							className="prose max-w-prose dark:prose-invert mx-auto mb-40"
+							className="prose max-w-prose dark:prose-invert mx-auto mb-40 source-serif"
 						>
 							<PortableText
 								value={body}
