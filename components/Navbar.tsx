@@ -10,12 +10,8 @@ import { cn } from "@/lib/utils";
 import useScrollListener from "../lib/hooks/useScrollListener";
 import {
 	Drawer,
-	DrawerClose,
 	DrawerContent,
-	DrawerDescription,
 	DrawerFooter,
-	DrawerHeader,
-	DrawerTitle,
 	DrawerTrigger,
 } from "@/components/ui/drawer";
 
@@ -109,12 +105,6 @@ export const Navbar = () => {
 							</div>
 						</DrawerTrigger>
 						<DrawerContent>
-							<DrawerHeader>
-								{/* <DrawerTitle>Menu</DrawerTitle> */}
-								{/* <DrawerDescription>
-								
-								</DrawerDescription> */}
-							</DrawerHeader>
 							<nav className="overflow-auto p-6">
 								<ul className="flex flex-col space-y-3">
 									<li className="text-center">
@@ -139,25 +129,12 @@ export const Navbar = () => {
 												>
 													{link.name}
 												</MobileLink>
-												{/* <Link
-														href={link.path}
-														className={cn(
-															"py-2 px-4 relative text-2xl",
-															pathName ===
-																link.path
-																? "underline"
-																: ""
-														)}
-													>
-														{link.name}
-													</Link> */}
 											</li>
 										);
 									})}
 								</ul>
 							</nav>
 							<DrawerFooter>
-								{/* <Button>Submit</Button> */}
 								<ModeToggle />
 							</DrawerFooter>
 						</DrawerContent>
@@ -189,7 +166,7 @@ function MobileLink({
 				router.push(href.toString());
 				onOpenChange?.(false);
 			}}
-			className={cn("text-base", className)}
+			className={cn("text-lg", className)}
 			{...props}
 		>
 			{children}
