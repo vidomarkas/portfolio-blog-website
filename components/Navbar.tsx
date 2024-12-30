@@ -1,5 +1,8 @@
 "use client";
-import Link from "next/link";
+import * as React from "react";
+import Link, { LinkProps } from "next/link";
+import { useRouter } from "next/navigation";
+
 import { useEffect, useState } from "react";
 import { ModeToggle } from "./ModeToggle";
 import { usePathname } from "next/navigation";
@@ -17,6 +20,8 @@ import {
 } from "@/components/ui/drawer";
 
 export const Navbar = () => {
+	const [navClassList, setNavClassList] = useState(["header"]);
+	const [open, setOpen] = React.useState(false);
 	const links = [
 		{ name: "About", path: "/about" },
 		{ name: "Work", path: "/work" },
@@ -24,8 +29,11 @@ export const Navbar = () => {
 	];
 	const pathName = usePathname();
 
-	const [navClassList, setNavClassList] = useState(["header"]);
 	const scroll = useScrollListener();
+
+	const onOpenChange = React.useCallback((open: boolean) => {
+		setOpen(open);
+	}, []);
 
 	useEffect(() => {
 		const _classList = ["header"];
@@ -80,7 +88,7 @@ export const Navbar = () => {
 					</span>
 				</div>
 				<div className="md:hidden">
-					<Drawer>
+					<Drawer open={open} onOpenChange={onOpenChange}>
 						<DrawerTrigger>
 							<div>
 								<svg
@@ -102,38 +110,55 @@ export const Navbar = () => {
 						</DrawerTrigger>
 						<DrawerContent>
 							<DrawerHeader>
-								<DrawerTitle>Menu</DrawerTitle>
-								<DrawerDescription>
-									<nav className="">
-										<ul className="">
-											{links.map((link, index) => {
-												return (
-													<li key={index}>
-														<Link
-															href={link.path}
-															className={cn(
-																"py-2 px-4 relative transition-all duration-500 ease-out hover:underline underline-offset-8",
-																pathName ===
-																	link.path
-																	? "underline"
-																	: ""
-															)}
-														>
-															{link.name}
-														</Link>
-													</li>
-												);
-											})}
-										</ul>
-									</nav>
-								</DrawerDescription>
+								{/* <DrawerTitle>Menu</DrawerTitle> */}
+								{/* <DrawerDescription>
+								
+								</DrawerDescription> */}
 							</DrawerHeader>
+							<nav className="overflow-auto p-6">
+								<ul className="flex flex-col space-y-3">
+									<li className="text-center">
+										<MobileLink
+											href="/"
+											onOpenChange={setOpen}
+											className=""
+										>
+											Home
+										</MobileLink>
+									</li>
+									{links.map((link, index) => {
+										return (
+											<li
+												key={index}
+												className="text-center my-2"
+											>
+												<MobileLink
+													href={link.path}
+													onOpenChange={setOpen}
+													className=""
+												>
+													{link.name}
+												</MobileLink>
+												{/* <Link
+														href={link.path}
+														className={cn(
+															"py-2 px-4 relative text-2xl",
+															pathName ===
+																link.path
+																? "underline"
+																: ""
+														)}
+													>
+														{link.name}
+													</Link> */}
+											</li>
+										);
+									})}
+								</ul>
+							</nav>
 							<DrawerFooter>
 								{/* <Button>Submit</Button> */}
 								<ModeToggle />
-								<DrawerClose>
-									{/* <Button variant="outline">Cancel</Button> */}
-								</DrawerClose>
 							</DrawerFooter>
 						</DrawerContent>
 					</Drawer>
@@ -142,3 +167,32 @@ export const Navbar = () => {
 		</header>
 	);
 };
+
+interface MobileLinkProps extends LinkProps {
+	onOpenChange?: (open: boolean) => void;
+	children: React.ReactNode;
+	className?: string;
+}
+
+function MobileLink({
+	href,
+	onOpenChange,
+	className,
+	children,
+	...props
+}: MobileLinkProps) {
+	const router = useRouter();
+	return (
+		<Link
+			href={href}
+			onClick={() => {
+				router.push(href.toString());
+				onOpenChange?.(false);
+			}}
+			className={cn("text-base", className)}
+			{...props}
+		>
+			{children}
+		</Link>
+	);
+}
