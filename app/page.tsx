@@ -45,13 +45,13 @@ export default async function Home() {
 			<main className="flex-grow ">
 				<header className="py-20">
 					<div className="container ">
-						<h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold mb-8">
+						<h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold mb-8">
 							Hi, I’m Vik, <br /> Web Developer <br />& Digital
 							Creator
 						</h1>
 					</div>
 				</header>
-				<section className="container py-20">
+				<section className="container pt-6 pb-10 lg:py-20">
 					<div className="text-container">
 						<p className="text-[22px] mb-4 text-zinc-600 dark:text-zinc-400">
 							I’m all about creating high-performing, thoughtfully
@@ -76,8 +76,8 @@ export default async function Home() {
 					<div
 						className={`container grid grid-cols-1 md:grid-cols-2 grid-rows-${featuredProjects.length + 1} gap-10 lg:gap-32 py-20`}
 					>
-						<div className="flex items-center justify-center">
-							<h2 className="text-6xl font-bold">
+						<div className="md:flex items-center justify-center">
+							<h2 className="text-4xl sm:text-4xl lg:text-6xl font-bold">
 								Some of my work
 							</h2>
 						</div>
@@ -141,7 +141,7 @@ export default async function Home() {
 				</section>
 
 				{posts && posts?.length > 0 && (
-					<section className="py-20">
+					<section className="py-20 overflow-x-hidden">
 						<div className="container flex justify-between">
 							<h2 className="text-2xl">
 								The latest.{" "}
@@ -151,14 +151,14 @@ export default async function Home() {
 							</h2>
 							<Link
 								href="/blog"
-								className="text-xl hover:underline underline-offset-8"
+								className="text-xl hover:underline underline-offset-8 hidden lg:block"
 							>
-								See All Posts
+								See all posts
 							</Link>
 						</div>
 
 						<div
-							className="scroll-container flex w-full gap-x-10 overflow-x-scroll snap-x scroll-smooth snap-mandatory pt-10"
+							className="scroll-container flex w-full gap-x-2 lg:gap-x-10 overflow-x-scroll snap-x scroll-smooth snap-mandatory pt-10"
 							role="list"
 						>
 							{posts?.map((post: Post, id: number) => (
@@ -172,7 +172,7 @@ export default async function Home() {
 											href={`blog/${post.slug}`}
 											className="group"
 										>
-											<div className="border border-black/-5 dark:border-white/5 rounded-[22px] w-[400px] h-[500px] p-8 relative overflow-hidden flex items-end bg-[#121212]">
+											<div className=" border border-black/-5 dark:border-white/5 rounded-[22px] aspect-[3/4] w-[75vw] lg:w-[400px] lg:h-[500px] p-8 relative overflow-hidden flex items-end bg-[#121212]">
 												<div className="card-overlay">
 													<Image
 														src={urlFor(
@@ -185,7 +185,7 @@ export default async function Home() {
 													/>
 												</div>
 												<div className="card-description">
-													<div className="mb-2 font-medium text-white">
+													<div className="mb-2 font-medium text-white/60">
 														{post?.tags?.map(
 															(tag: Tag) => (
 																<p
@@ -198,12 +198,12 @@ export default async function Home() {
 															)
 														)}
 													</div>
-													<h3 className="text-white/60 mb-3 line-clamp-2">
+													<h3 className="text-white mb-3 line-clamp-2">
 														{post.title}
 													</h3>
-													<div className="text-white">
+													<div className="text-white/60">
 														Read more{" "}
-														<CircleChevronRight className="inline h-4 w-4 text-white" />
+														<CircleChevronRight className="inline h-4 w-4 text-white/60" />
 													</div>
 												</div>
 											</div>
@@ -212,12 +212,21 @@ export default async function Home() {
 								</article>
 							))}
 						</div>
+						<div className="container">
+							<Link
+								href="/blog"
+								className="mt-6 text-xl hover:underline underline-offset-8 lg:hidden block"
+							>
+								See all posts
+							</Link>
+						</div>
 					</section>
 				)}
-				<section className="py-20 my-20">
+				<section className="container py-20 my-20">
 					<div className="text-container">
 						<h2 className="text-2xl">
-							Get in touch (click the email to copy)
+							Get in touch <br className="inline lg:hidden" />{" "}
+							(click the email to copy)
 						</h2>
 
 						<CopyEmail email="hey@domarkas.co" />

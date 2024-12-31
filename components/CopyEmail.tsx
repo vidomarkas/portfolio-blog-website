@@ -41,7 +41,7 @@ const CopyEmail: React.FC<CopyEmailProps> = ({ email }) => {
 			<div
 				id="emailText"
 				onClick={copyText}
-				className="text-[3.7vw] font-semibold cursor-pointer"
+				className="text-4xl lg:text-7xl font-semibold cursor-pointer"
 			>
 				{displayText}
 			</div>

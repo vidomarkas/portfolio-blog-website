@@ -218,6 +218,20 @@ h6 {
 	padding-bottom: 20px;
 }
 
+.card-view {
+	transform: translateX(1rem);
+	// position: relative;
+	// &:last-child {
+	// 	margin-right: 1rem;
+	// }
+}
+
+.scroll-container {
+	article:last-child {
+		margin-right: 2rem;
+	}
+}
+
 @media (min-width: 1200px) {
 	.card-view {
 		transform: translateX(calc((100vw - 1200px) / 2 + 1rem));
@@ -255,7 +269,7 @@ h6 {
 }
 
 html {
-	scroll-behavior: smooth;
+	// scroll-behavior: smooth;
 }
 
 .nav {

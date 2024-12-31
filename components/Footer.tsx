@@ -12,7 +12,7 @@ export const Footer = () => {
 	return (
 		<footer className="border-t border-[#eaeaea] dark:border-[#333] py-8 px-4">
 			<div className="container mx-auto flex justify-between dark:text-[#eaeaea] text-[#333]">
-				<p>Copyright © {year} Viktoras Domarkas</p>
+				<p>{year} Viktoras Domarkas</p>
 				{/* <ul className="flex space-x-3">
 					<li>
 						<Link href="/cookies" className="hover:underline">
