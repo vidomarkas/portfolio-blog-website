@@ -45,7 +45,7 @@ export default async function Home() {
 			<main className="flex-grow ">
 				<header className="py-20">
 					<div className="container ">
-						<h1 className="text-7xl font-semibold	mb-8">
+						<h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold mb-8">
 							Hi, I’m Vik, <br /> Web Developer <br />& Digital
 							Creator
 						</h1>
