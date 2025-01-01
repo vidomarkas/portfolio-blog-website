@@ -92,8 +92,8 @@ const PostsList = ({ selectedTagIDs, searchQuery }: PostsListProps) => {
 					className="border-b first-of-type:pt-0 first-of-type:mt-0 last-of-type:border-b-0 pt-4 pb-8 mt-4 dark:border-[#363636]"
 				>
 					<Link href={`blog/${post.slug}`}>
-						<div className="flex justify-between gap-x-4">
-							<div>
+						<div className="flex flex-col md:flex-row md:justify-between md:gap-x-4">
+							<div className="order-2 md:order-1">
 								<h2 className="text-2xl font-bold mb-3">
 									{post.title}
 								</h2>
@@ -111,13 +111,13 @@ const PostsList = ({ selectedTagIDs, searchQuery }: PostsListProps) => {
 									))}
 								</div>
 							</div>
-							<div className="relative h-[200px] w-[300px] overflow-hidden shrink-0 grow-0 rounded-xl">
+							<div className="relative h-[200px] w-full md:w-[300px] overflow-hidden shrink-0 grow-0 rounded-xl order-1 md:order-2 mb-4 md:mb-0">
 								<Image
 									src={urlFor(post.featuredImage).url()}
 									width={300}
 									height={100}
 									alt={post.title}
-									className="absolute top-0 left-0 object-center"
+									className="absolute top-0 left-0 object-center w-full"
 								/>
 							</div>
 						</div>

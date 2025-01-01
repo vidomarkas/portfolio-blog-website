@@ -32,13 +32,13 @@ const SubscribeForm = () => {
 		<>
 			<form
 				onSubmit={handleSubmit}
-				className="inline-flex justify-center border p-1 dark:border-gray-600 mx-auto rounded-2xl gap-x-2 mb-6"
+				className="inline-flex justify-center border p-1 dark:border-gray-600 mx-auto rounded-2xl gap-x-2 mb-6 flex-wrap md:flex-nowrap"
 			>
 				<input
 					type="email"
 					name="email"
 					id="email"
-					className="border dark:bg-[#18181a] dark:border-gray-600 rounded-xl px-4"
+					className="border dark:bg-[#18181a] dark:border-gray-600 rounded-xl w-full px-4 py-2 mb-2 md:mb-0 text-center md:text-left"
 					required
 					placeholder="email@example.com"
 					value={email}
@@ -47,7 +47,7 @@ const SubscribeForm = () => {
 				/>
 				<button
 					type="submit"
-					className="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-xl flex gap-x-2 group"
+					className="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-xl flex gap-x-2 group w-full justify-center md:justify-start"
 				>
 					<Bell className="group-hover:rotate-12 transition-all duration-75" />
 					{status === "loading" ? "Submitting..." : "Subscribe"}

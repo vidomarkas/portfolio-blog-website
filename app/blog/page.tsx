@@ -34,7 +34,7 @@ export default async function Blog() {
 	return (
 		<div className="flex flex-col min-h-screen mt-32">
 			<div className="container text-center mt-24 mb-20">
-				<h1 className="text-6xl font-bold mb-3">
+				<h1 className="text-4xl md:text-6xl font-bold mb-3">
 					Inside the Industry: Stories and Insights
 				</h1>
 				<p className="text-zinc-600 dark:text-zinc-400 font-medium mb-6">

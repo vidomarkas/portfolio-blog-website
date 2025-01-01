@@ -13,15 +13,15 @@ const PostsContainer = ({ tags }: PostsContainerProps) => {
 	const [selectedTagIDs, setSelectedTagIDs] = useState<string[]>([]);
 	const [searchQuery, setSearchQuery] = useState<string>("");
 	return (
-		<div className="container grid grid-cols-12 gap-6">
-			<div className="col-span-8 min-h-screen">
+		<div className="container flex flex-wrap lg:grid lg:grid-cols-12 lg:gap-6">
+			<div className="lg:col-span-8 min-h-screen order-2 lg:order-1">
 				<PostsList
 					selectedTagIDs={selectedTagIDs}
 					searchQuery={searchQuery}
 				/>
 			</div>
-			<aside className=" col-span-4">
-				<div className="sticky top-32">
+			<aside className=" lg:col-span-4 order-1 lg:order-2 w-full mb-10">
+				<div className="lg:sticky top-32">
 					<PostSearch
 						searchQuery={searchQuery}
 						setSearchQuery={setSearchQuery}
