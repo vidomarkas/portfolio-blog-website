@@ -21,7 +21,7 @@ const SubscribeForm = () => {
 		});
 
 		if (response.ok) {
-			console.log("response", response);
+			// console.log("response", response);
 			setStatus("success");
 			setEmail("");
 		} else {
