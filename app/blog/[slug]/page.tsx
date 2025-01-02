@@ -21,6 +21,7 @@ async function getData(slug: string) {
     *[_type == "post" && slug.current == '${slug}']{
   "slug": slug.current,
     title,
+    excerpt,
     body,
     featuredImage,
     publishedAt,
@@ -41,10 +42,10 @@ export async function generateMetadata({
 	const metadata = await getData(params.slug);
 	// const previousImages = (await parent).openGraph?.images || [];
 
-	// console.log(metadata.metaTitle);
+	// console.log("excerpt", metadata.excerpt);
 	return {
 		title: metadata.title,
-		description: metadata.metaDescription,
+		description: metadata.excerpt,
 		openGraph: {
 			images: [{ url: urlFor(metadata.featuredImage).url() }],
 		},

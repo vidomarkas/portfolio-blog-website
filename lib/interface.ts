@@ -80,7 +80,7 @@ export interface GalleryImage {
 export interface fullWork {
 	slug: string;
 	title: string;
-	excerpt: string;
+	aboutClientText: string;
 	industry: string;
 	year: number;
 	type: string;

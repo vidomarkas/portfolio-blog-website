@@ -13,7 +13,7 @@ async function getData(slug: string) {
   "slug": slug.current,
     title,
     industry,
-    excerpt,
+    aboutClientText,
     sourceUrl,
     liveUrl,
     type,
@@ -26,8 +26,6 @@ async function getData(slug: string) {
 }[0]`;
 
 	const data = await client.fetch(query);
-
-	// console.log("Fetched data:", data);
 
 	return data;
 }
@@ -84,7 +82,7 @@ export default async function WorkDetailsPage({
 	const {
 		title,
 		industry,
-		excerpt,
+		aboutClientText,
 		sourceUrl,
 		liveUrl,
 		year,
@@ -95,6 +93,8 @@ export default async function WorkDetailsPage({
 		gallery,
 	} = data;
 
+	// console.log("gallery", gallery);
+
 	return (
 		<div className=" mt-40">
 			<header className="container pb-6">
@@ -104,7 +104,7 @@ export default async function WorkDetailsPage({
 					</h1>
 					<div className="grid md:grid-cols-2 f-full">
 						<div className="">
-							<p className="max-w-2xl">{excerpt}</p>
+							<p className="max-w-2xl">{aboutClientText}</p>
 						</div>
 						<div className="flex gap-6 justify-end mt-4 md:mt-0">
 							{liveUrl && (

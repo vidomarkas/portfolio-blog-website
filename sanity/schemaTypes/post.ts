@@ -35,7 +35,7 @@ export default {
     {
       name: 'excerpt',
       type: 'text',
-      title: 'Excerpt (Max 200 characters)',
+      title: 'Excerpt | Meta description (Max 200 characters)',
       validation: (rule: Rule) => rule.max(200).error('Max 200 characters'),
     },
     {

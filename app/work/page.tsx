@@ -23,11 +23,10 @@ async function getData() {
     "featuredProjects": *[_type == "work" && featured == true]| order(year desc) {
         title,
         slug,
-          featuredImage,
-        excerpt,
+        featuredImage,
         industry, year,
-         services[]-> {_id, slug, name},
-         technologies[]-> {_id, slug, name}
+        services[]-> {_id, slug, name},
+        technologies[]-> {_id, slug, name}
     }
          }`;
 
@@ -79,7 +78,7 @@ const page = async () => {
 												).url()}
 												width={600}
 												height={600}
-												alt={project.title}
+												alt={project.featuredImage.alt}
 											/>
 										</div>
 
