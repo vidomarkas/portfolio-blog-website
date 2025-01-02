@@ -67,6 +67,7 @@ export default async function Home() {
 						<Link
 							href="/about"
 							className="font-semibold text-[22px] underline-offset-8 hover:underline"
+							aria-label="Read more about Viktoras Domarkas"
 						>
 							More about me
 						</Link>
@@ -152,25 +153,20 @@ export default async function Home() {
 							<Link
 								href="/blog"
 								className="text-xl hover:underline underline-offset-8 hidden lg:block"
+								aria-label="Visit all posts page"
 							>
 								See all posts
 							</Link>
 						</div>
 
-						<div
-							className="scroll-container flex w-full gap-x-2 lg:gap-x-10 overflow-x-scroll snap-x scroll-smooth snap-mandatory pt-10"
-							role="list"
-						>
+						<ul className="scroll-container flex w-full gap-x-2 lg:gap-x-10 overflow-x-scroll snap-x scroll-smooth snap-mandatory pt-10">
 							{posts?.map((post: Post, id: number) => (
-								<article
-									role="listitem"
-									key={id}
-									className="snap-start "
-								>
-									<div className="card-view flex-shrink-0 z-10">
+								<li key={id} className="snap-start ">
+									<article className="card-view flex-shrink-0 z-10">
 										<Link
 											href={`blog/${post.slug}`}
 											className="group"
+											aria-label={`Read the blog post ${post.title}`}
 										>
 											<div className=" border border-black/-5 dark:border-white/5 rounded-[22px] aspect-[3/4] w-[75vw] lg:w-[400px] lg:h-[500px] p-8 relative overflow-hidden flex items-end bg-[#121212]">
 												<div className="card-overlay">
@@ -208,14 +204,15 @@ export default async function Home() {
 												</div>
 											</div>
 										</Link>
-									</div>
-								</article>
+									</article>
+								</li>
 							))}
-						</div>
+						</ul>
 						<div className="container">
 							<Link
 								href="/blog"
 								className="mt-6 text-xl hover:underline underline-offset-8 lg:hidden block"
+								aria-label="Visit all blog posts page"
 							>
 								See all posts
 							</Link>
@@ -236,6 +233,7 @@ export default async function Home() {
 									href="https://wa.link/l3y41j"
 									target="_blank"
 									rel="noopener noreferrer"
+									aria-label="Contact me via WhatsApp"
 								>
 									<Image
 										src={whatsapp}
@@ -251,6 +249,7 @@ export default async function Home() {
 									href="https://github.com/vidomarkas"
 									target="_blank"
 									rel="noopener noreferrer"
+									aria-label="Visit my GitHub profile"
 								>
 									<Image
 										src={githubIcon}
@@ -266,6 +265,7 @@ export default async function Home() {
 									href="https://www.instagram.com/viktorascodes/"
 									target="_blank"
 									rel="noopener noreferrer"
+									aria-label="Visit my instagram profile"
 								>
 									<Image
 										src={instaIcon}
@@ -281,6 +281,7 @@ export default async function Home() {
 									href="https://www.linkedin.com/in/viktoras-domarkas"
 									target="_blank"
 									rel="noopener noreferrer"
+									aria-label="Visit my LinkedIn profile"
 								>
 									<Image
 										src={linkedIcon}
