@@ -44,10 +44,10 @@ export async function generateMetadata({
 	// console.log(metadata.metaTitle);
 	return {
 		title: metadata.title,
-		// description: metadata.metaDescription,
-		// openGraph: {
-		//     images: [urlFor(metadata.mainImage).url(), ...previousImages]
-		// }
+		description: metadata.metaDescription,
+		openGraph: {
+			images: [{ url: urlFor(metadata.featuredImage).url() }],
+		},
 	};
 }
 
