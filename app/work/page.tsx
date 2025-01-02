@@ -49,17 +49,19 @@ const page = async () => {
 						</h1>
 					</div>
 					<div className="col-span-1  flex lg:justify-end">
-						<p className="text-justify max-w-xl lg:max-w-md ttext-zinc-600 dark:text-zinc-400">
-							I have had the privilege of working with some of the
-							most well-known companies in the world. Here are
-							some of the works I’m most proud of.
+						<p className="text-justify max-w-xl lg:max-w-md text-zinc-600 dark:text-zinc-400">
+							My career has allowed me to contribute to projects
+							for companies across various industries.
+							<span className="block mt-4">
+								Here are some of the works I’m most proud of.
+							</span>
 						</p>
 					</div>
 				</div>
 			</section>
 			<section>
 				<div className="container">
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-8">
 						{featuredProjects.map(
 							(project: FeaturedProject, index: number) => {
 								return (
@@ -117,16 +119,25 @@ const page = async () => {
 
 			<section className="py-20 ">
 				<div className="container">
-					<h2 id="other_work" className="text-3xl font-bold mb-10">
+					<h2
+						id="other_work"
+						className="text-2xl md:text-3xl font-bold mb-10"
+					>
 						Other notable projects
 					</h2>
 					<div className="grid grid-cols-12 w-full text-start font-medium">
-						<div className="col-span-4 lg:col-span-3">Client</div>
-						<div className="col-span-5 lg:col-span-3">Industry</div>
-						<div className="hidden md:block col-span-5">
+						<div className="col-span-4 lg:col-span-3 font-semibold">
+							Client
+						</div>
+						<div className="col-span-5 lg:col-span-3 font-semibold">
+							Industry
+						</div>
+						<div className="hidden lg:block col-span-5 font-semibold">
 							Services
 						</div>
-						<div className="col-span-3 lg:col-span-1">Year</div>
+						<div className="col-span-3 lg:col-span-1 font-semibold">
+							Year
+						</div>
 					</div>
 					<Accordion type="single" collapsible>
 						{projects.map(
@@ -136,14 +147,14 @@ const page = async () => {
 									value={`item-${index + 1}`}
 								>
 									<AccordionTrigger>
-										<div className="grid grid-cols-12 w-full text-start">
+										<div className="grid grid-cols-12 w-full text-start gap-2">
 											<div className="col-span-4 lg:col-span-3">
 												{project.title}
 											</div>
 											<div className="col-span-5 lg:col-span-3">
 												{project.industry}
 											</div>
-											<div className="hidden md:block col-span-5">
+											<div className="hidden lg:block col-span-5">
 												{project.services &&
 													project.services[0].name}
 											</div>

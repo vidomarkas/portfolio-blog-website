@@ -99,12 +99,14 @@ export default async function WorkDetailsPage({
 		<div className=" mt-40">
 			<header className="container pb-6">
 				<div>
-					<h1 className="text-6xl font-semibold mb-4">{title}</h1>
-					<div className="grid grid-cols-2 f-full">
+					<h1 className="text-4xl md:text-6xl font-semibold mb-4">
+						{title}
+					</h1>
+					<div className="grid md:grid-cols-2 f-full">
 						<div className="">
 							<p className="max-w-2xl">{excerpt}</p>
 						</div>
-						<div className="flex gap-6 justify-end">
+						<div className="flex gap-6 justify-end mt-4 md:mt-0">
 							{liveUrl && (
 								<Link
 									target="_blank"
@@ -130,18 +132,19 @@ export default async function WorkDetailsPage({
 				</div>
 			</header>
 			<section className="container my-6">
-				<div className="flex justify-between items-center border rounded-xl px-4 py-1 dark:border-[#363636]">
+				<div className="flex justify-between items-start border rounded-xl px-4 py-1 dark:border-[#363636]">
 					<div className="flex-1 ">
-						Industry
-						<div>{industry}</div>
+						<div className="font-semibold mb-2">Industry</div>
+						<div className="text-xs">{industry}</div>
 					</div>
 					<div className="flex-1 text-center">
-						Project Type
-						<div>{type}</div>
+						<div className="font-semibold mb-2">Project Type</div>
+
+						<div className="text-xs">{type}</div>
 					</div>
 					<div className="flex-1 text-right">
-						Year
-						<div>{year}</div>
+						<div className="font-semibold mb-2">Year</div>
+						<div className="text-xs">{year}</div>
 					</div>
 				</div>
 			</section>
@@ -166,7 +169,7 @@ export default async function WorkDetailsPage({
 
 			<div className="container ">
 				<div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-8 xl:gap-6 pt-10 mt-8 relative ">
-					<div className="lg:col-span-9 pb-12">
+					<div className="lg:col-span-9 pb-12 order-2 lg:order-1">
 						<article
 							className={`prose max-w-prose dark:prose-invert source-serif`}
 						>
@@ -176,8 +179,8 @@ export default async function WorkDetailsPage({
 							/>
 						</article>
 					</div>
-					<aside className="lg:col-span-3 ">
-						<div className="sticky top-20">
+					<aside className="lg:col-span-3 order-1 lg:order-2">
+						<div className="lg:sticky top-20">
 							<div>
 								<h2 className="text-xl font-semibold mb-2">
 									Services
@@ -194,7 +197,7 @@ export default async function WorkDetailsPage({
 										))}
 								</ul>
 							</div>
-							<div className="mt-4">
+							<div className="mt-4 pb-12">
 								<h2 className="text-xl font-semibold mb-2">
 									Technologies
 								</h2>
