@@ -8,8 +8,13 @@ import { TextParallaxContent } from "@/components/BlogHeader";
 import { Toc } from "@/components/Toc";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { Metadata } from "next";
 
 export const revalidate = 3600;
+
+// export const metadata: Metadata = {
+//     title:
+// }
 
 async function getData(slug: string) {
 	const query = `
@@ -26,6 +31,24 @@ async function getData(slug: string) {
 	const data = await client.fetch(query);
 
 	return data;
+}
+
+export async function generateMetadata({
+	params,
+}: {
+	params: { slug: string };
+}): Promise<Metadata> {
+	const metadata = await getData(params.slug);
+	// const previousImages = (await parent).openGraph?.images || [];
+
+	// console.log(metadata.metaTitle);
+	return {
+		title: metadata.title,
+		// description: metadata.metaDescription,
+		// openGraph: {
+		//     images: [urlFor(metadata.mainImage).url(), ...previousImages]
+		// }
+	};
 }
 
 export default async function BlogArticle({

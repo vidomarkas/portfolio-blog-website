@@ -25,7 +25,11 @@ const sourceSerif = localFont({
 });
 
 export const metadata: Metadata = {
-	title: "Viktoras Domarkas - Web Developer in the UK | Front-End & Back-End Expertise",
+	title: {
+		default:
+			"Viktoras Domarkas - Web Developer in the UK | Front-End & Back-End Expertise",
+		template: "%s - Viktoras Domarkas - Web Developer in the UK",
+	},
 	description:
 		"Viktoras Domarkas is a skilled web developer specialising in building high-performance websites, bespoke web applications, and seamless user experiences. Based in the UK, he brings almost a decade of expertise in front-end and back-end development, delivering tailored solutions that drive results.",
 };
