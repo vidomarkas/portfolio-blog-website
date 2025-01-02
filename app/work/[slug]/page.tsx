@@ -149,9 +149,9 @@ export default async function WorkDetailsPage({
 				</div>
 			</section>
 			{/* featured images */}
-			<section className="grid grid-cols-2 grid-rows-2 gap-4 p-4">
-				{gallery &&
-					gallery.map((image, i: number) => (
+			{gallery && (
+				<section className="grid grid-cols-2 grid-rows-2 gap-4 p-4">
+					{gallery.map((image, i: number) => (
 						<div
 							key={i}
 							className="w-full rounded-xl overflow-hidden"
@@ -165,7 +165,8 @@ export default async function WorkDetailsPage({
 							/>
 						</div>
 					))}
-			</section>
+				</section>
+			)}
 
 			<div className="container ">
 				<div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-8 xl:gap-6 pt-10 mt-8 relative ">
