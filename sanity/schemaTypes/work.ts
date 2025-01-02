@@ -28,11 +28,22 @@ export const work = defineType({
       initialValue: false,
       description: 'Check this box to mark as featured work',
     },
-
     {
       name: 'gallery',
       type: 'array',
-      of: [{type: 'image'}],
+      of: [
+        {
+          type: 'image',
+          fields: [
+            {
+              name: 'alt',
+              type: 'text',
+              title: 'Alt Text',
+              validation: (rule: Rule) => rule.required().error('Alt text is required'),
+            },
+          ],
+        },
+      ],
       options: {
         layout: 'grid',
       },
@@ -55,6 +66,16 @@ export const work = defineType({
       name: 'featuredImage',
       type: 'image',
       title: 'Featured Image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'text',
+          title: 'Alt Text',
+          description:
+            'Provide a brief description of the featured image for accessibility and SEO.',
+          validation: (rule: Rule) => rule.required().error('Alt text is required'),
+        },
+      ],
     },
     {
       name: 'publishedAt',
@@ -63,9 +84,9 @@ export const work = defineType({
       initialValue: () => new Date().toISOString(),
     },
     {
-      name: 'excerpt',
+      name: 'aboutClientText',
       type: 'text',
-      title: 'Excerpt (Max 200 characters)',
+      title: 'About Client (Max 200 characters)',
       validation: (rule: Rule) => rule.max(200).error('Max 200 characters'),
     },
     {
