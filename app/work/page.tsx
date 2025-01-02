@@ -44,7 +44,7 @@ const page = async () => {
 			<section className="container py-20">
 				<div className="grid lg:grid-cols-2 gap-x-6 gap-y-8 lg:gap-y-0 ">
 					<div className="col-span-1 ">
-						<h1 className="text-7xl font-bold whitespace-nowrap">
+						<h1 className="text-4xl md:text-6xl font-bold whitespace-nowrap">
 							Featured Work
 						</h1>
 					</div>
@@ -121,10 +121,12 @@ const page = async () => {
 						Other notable projects
 					</h2>
 					<div className="grid grid-cols-12 w-full text-start font-medium">
-						<div className="col-span-3">Client</div>
-						<div className="col-span-3">Industry</div>
-						<div className="col-span-5">Services</div>
-						<div className="col-span-1">Year</div>
+						<div className="col-span-4 lg:col-span-3">Client</div>
+						<div className="col-span-5 lg:col-span-3">Industry</div>
+						<div className="hidden md:block col-span-5">
+							Services
+						</div>
+						<div className="col-span-3 lg:col-span-1">Year</div>
 					</div>
 					<Accordion type="single" collapsible>
 						{projects.map(
@@ -135,17 +137,17 @@ const page = async () => {
 								>
 									<AccordionTrigger>
 										<div className="grid grid-cols-12 w-full text-start">
-											<div className="col-span-3">
+											<div className="col-span-4 lg:col-span-3">
 												{project.title}
 											</div>
-											<div className="col-span-3">
+											<div className="col-span-5 lg:col-span-3">
 												{project.industry}
 											</div>
-											<div className="col-span-5">
+											<div className="hidden md:block col-span-5">
 												{project.services &&
 													project.services[0].name}
 											</div>
-											<div className="col-span-1">
+											<div className="col-span-3 lg:col-span-1">
 												{project.year}
 											</div>
 										</div>
