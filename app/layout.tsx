@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import Console from "@/components/Console";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = localFont({
 	src: "../public/assets/fonts/GeistVF.woff",
@@ -50,6 +51,7 @@ export default function RootLayout({
 					<Footer />
 				</ThemeProvider>
 				<Console />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
