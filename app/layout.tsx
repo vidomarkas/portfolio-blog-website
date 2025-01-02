@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import Console from "@/components/Console";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const geistSans = localFont({
 	src: "../public/assets/fonts/GeistVF.woff",
@@ -41,6 +42,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
+			<GoogleTagManager gtmId="GTM-N5S5WW8J" />
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} antialiased`}
 			>
