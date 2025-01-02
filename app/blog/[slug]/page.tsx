@@ -119,14 +119,20 @@ export default async function BlogArticle({
 
 const myPortableTextComponents = {
 	types: {
-		image: ({ value }: any) => (
-			<Image
-				src={urlFor(value).url()}
-				alt="Post"
-				width={700}
-				height={700}
-			/>
-		),
+		image: ({ value }: any) => {
+			if (!value.asset) {
+				return null; // Handle cases where the image data is missing
+			}
+
+			return (
+				<Image
+					src={urlFor(value).url()}
+					alt={value.alt || "Post image"}
+					width={700}
+					height={700}
+				/>
+			);
+		},
 	},
 	block: {
 		h2: ({ value }: any) => (

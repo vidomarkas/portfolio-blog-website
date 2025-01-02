@@ -30,7 +30,7 @@ export const TextParallaxContent = ({
 			}}
 		>
 			<div className="relative h-[150vh]">
-				<StickyImage imgUrl={imgUrl} />
+				<StickyImage imgUrl={imgUrl} heading={heading} />
 				<OverlayCopy
 					heading={heading}
 					date={date}
@@ -42,7 +42,13 @@ export const TextParallaxContent = ({
 	);
 };
 
-const StickyImage = ({ imgUrl }: { imgUrl: string }) => {
+const StickyImage = ({
+	imgUrl,
+	heading,
+}: {
+	imgUrl: string;
+	heading: string;
+}) => {
 	const targetRef = useRef(null);
 	const { scrollYProgress } = useScroll({
 		target: targetRef,
@@ -65,7 +71,7 @@ const StickyImage = ({ imgUrl }: { imgUrl: string }) => {
 			<Image
 				priority
 				src={imgUrl}
-				alt="example"
+				alt={heading}
 				width={1000}
 				height={1000}
 				className="w-full h-full object-cover"
