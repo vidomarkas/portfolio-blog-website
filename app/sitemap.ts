@@ -6,7 +6,7 @@ async function fetchBlogPosts() {
 	const query = `
     *[_type == "post"]{
         "slug": slug.current,
-        publishedAt
+        _updatedAt
     }`;
 
 	return await client.fetch(query);
@@ -16,7 +16,7 @@ async function fetchWorkItems() {
 	const query = `
     *[_type == "work" && featured == true]{
         "slug": slug.current,
-        publishedAt
+        _updatedAt
     }`;
 
 	return await client.fetch(query);
@@ -29,13 +29,13 @@ export default async function sitemap() {
 	]);
 
 	return [
-		...blogPosts.map((post: { slug: string; publishedAt: string }) => ({
+		...blogPosts.map((post: { slug: string; _updatedAt: string }) => ({
 			url: `${BASE_URL}/blog/${post.slug}`,
-			lastModified: new Date(post.publishedAt),
+			lastModified: new Date(post._updatedAt),
 		})),
-		...workItems.map((work: { slug: string; publishedAt: string }) => ({
+		...workItems.map((work: { slug: string; _updatedAt: string }) => ({
 			url: `${BASE_URL}/work/${work.slug}`,
-			lastModified: new Date(work.publishedAt),
+			lastModified: new Date(work._updatedAt),
 		})),
 		{
 			url: BASE_URL,
