@@ -42,6 +42,13 @@ export async function generateMetadata({
 	const metadata = await getData(params.slug);
 	// const previousImages = (await parent).openGraph?.images || [];
 
+	if (!metadata) {
+		return {
+			title: "Article Not Found",
+			description: "The article you are looking for doesn't exist.",
+		};
+	}
+
 	// console.log("excerpt", metadata.excerpt);
 	return {
 		title: metadata.title,
@@ -57,6 +64,23 @@ export default async function BlogArticle({
 }: {
 	params: { slug: string };
 }) {
+	const data: fullBlog | null = await getData(params.slug);
+
+	if (!data) {
+		return (
+			<div className="mt-40">
+				<header className="container pb-6">
+					<h1 className="text-6xl font-semibold mb-4">
+						Article Not Found
+					</h1>
+					<p>
+						The article you&apos;re looking for doesn&apos;t exist.
+					</p>
+				</header>
+			</div>
+		);
+	}
+
 	const {
 		featuredImage,
 		title,
@@ -64,7 +88,7 @@ export default async function BlogArticle({
 		headings = [],
 		publishedAt,
 		timeToRead,
-	}: fullBlog = await getData(params.slug);
+	} = data;
 
 	const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
 		year: "numeric",
