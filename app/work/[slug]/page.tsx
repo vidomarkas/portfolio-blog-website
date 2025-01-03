@@ -4,6 +4,7 @@ import Image from "next/image";
 import { PortableText } from "next-sanity";
 import { Code, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const revalidate = 60;
 
@@ -65,18 +66,7 @@ export default async function WorkDetailsPage({
 	const data: fullWork | null = await getData(params.slug);
 
 	if (!data) {
-		return (
-			<div className="mt-40">
-				<header className="container pb-6">
-					<h1 className="text-6xl font-semibold mb-4">
-						Article Not Found
-					</h1>
-					<p>
-						The article you&apos;re looking for doesn&apos;t exist.
-					</p>
-				</header>
-			</div>
-		);
+		notFound();
 	}
 
 	const {
