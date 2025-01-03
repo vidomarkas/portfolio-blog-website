@@ -2,7 +2,7 @@ import React from "react";
 
 const CookiePolicyPage: React.FC = () => {
 	return (
-		<div className="container mt-40">
+		<div className="container my-40">
 			<h1 className="text-3xl font-semibold">Cookie Policy</h1>
 			<p>
 				This Cookie Policy explains how our website uses cookies and

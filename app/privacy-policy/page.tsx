@@ -2,9 +2,9 @@ import React from "react";
 
 const PrivacyPolicy: React.FC = () => {
 	return (
-		<div>
+		<div className="container my-40">
 			<h1>Privacy Policy</h1>
-			<p>Last updated: [Date]</p>
+			<p>Last updated: 03/05/2025</p>
 			<p>
 				This Privacy Policy describes Our policies and procedures on the
 				collection, use, and disclosure of Your information when You use
@@ -29,7 +29,7 @@ const PrivacyPolicy: React.FC = () => {
 				<li>
 					<strong>Company</strong> (referred to as either &quot;the
 					Company&quot;, &quot;We&quot;, &quot;Us&quot; or
-					&quot;Our&quot; in this Agreement) refers to [Company Name].
+					&quot;Our&quot; in this Agreement) refers to domarkas.co.
 				</li>
 				<li>
 					<strong>Cookies</strong> are small files that are placed on
@@ -38,7 +38,7 @@ const PrivacyPolicy: React.FC = () => {
 					that website among its many uses.
 				</li>
 				<li>
-					<strong>Country</strong> refers to: [Country]
+					<strong>Country</strong> refers to: United Kingdom
 				</li>
 				<li>
 					<strong>Device</strong> means any device that can access the
@@ -67,8 +67,8 @@ const PrivacyPolicy: React.FC = () => {
 					duration of a page visit).
 				</li>
 				<li>
-					<strong>Website</strong> refers to [Website Name],
-					accessible from [Website URL]
+					<strong>Website</strong> refers to domarkas.co, accessible
+					from https://domarkas.co
 				</li>
 				<li>
 					<strong>You</strong> means the individual accessing or using
@@ -348,12 +348,10 @@ const PrivacyPolicy: React.FC = () => {
 				contact us:
 			</p>
 			<ul>
-				<li>By email: [Your Email]</li>
+				<li>By email: hey@domarkas.co</li>
 				<li>
-					By visiting this page on our website: [Contact Page URL]
+					By visiting this page on our website: https://domarkas.co
 				</li>
-				<li>By phone number: [Your Phone Number]</li>
-				<li>By mail: [Your Address]</li>
 			</ul>
 		</div>
 	);
