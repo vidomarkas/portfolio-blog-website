@@ -44,35 +44,55 @@ export default async function Home() {
 		<div className="flex flex-col min-h-screen mt-32">
 			<main className="flex-grow ">
 				<header className="py-20">
-					<div className="container ">
-						<h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold mb-8">
-							Hi, I’m Vik, <br /> Web Developer <br />& Digital
-							Creator
+					<div className="container">
+						<p className="text-sm font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-6">
+							Viktoras Domarkas · Full-stack developer
+						</p>
+						<h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold mb-8 max-w-5xl">
+							I match the tool to the problem, not the other way
+							around.
 						</h1>
+						<p className="text-[22px] text-zinc-600 dark:text-zinc-400 max-w-2xl mb-10">
+							Building for the web since 2017: WordPress sites for
+							businesses that needed them, custom React and Node
+							apps when that was the right call, and lately my own
+							product, end to end. Based in Lithuania, open to
+							remote.
+						</p>
+						<div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+							<a
+								href="#contact"
+								className="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-xl font-medium"
+							>
+								Get in touch
+							</a>
+							<Link
+								href="/work"
+								className="px-4 py-2 border border-black dark:border-white rounded-xl font-medium"
+								title="See Viktoras Domarkas' work"
+							>
+								See my work
+							</Link>
+							<a
+								href="https://github.com/vidomarkas"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="font-medium underline-offset-8 hover:underline"
+							>
+								GitHub
+							</a>
+							<a
+								href="https://www.linkedin.com/in/viktoras-domarkas"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="font-medium underline-offset-8 hover:underline"
+							>
+								LinkedIn
+							</a>
+						</div>
 					</div>
 				</header>
-				<section className="container pt-6 pb-10 lg:py-20">
-					<div className="text-container">
-						<p className="text-[22px] mb-4 text-zinc-600 dark:text-zinc-400">
-							I’m all about creating high-performing, thoughtfully
-							crafted web experiences that make a difference. To
-							me, quality isn’t just about speed—it’s about
-							building something that’s tailored and built to
-							last. From bespoke builds to seamless integrations,
-							I bring together the technical and creative sides of
-							web development to build solutions that genuinely
-							work. This is my approach, my work, and a glimpse
-							into what drives me forward.
-						</p>
-						<Link
-							href="/about"
-							className="font-semibold text-[22px] underline-offset-8 hover:underline"
-							aria-label="Read more about Viktoras Domarkas"
-						>
-							More about me
-						</Link>
-					</div>
-				</section>
+				
 				<section>
 					<div
 						className={`container grid grid-cols-1 md:grid-cols-2 grid-rows-${featuredProjects.length + 1} gap-10 lg:gap-32 py-20`}
@@ -219,7 +239,7 @@ export default async function Home() {
 						</div>
 					</section>
 				)}
-				<section className="container py-20 my-20">
+				<section id="contact" className="container py-20 my-20">
 					<div className="text-container">
 						<h2 className="text-2xl">
 							Get in touch <br className="inline lg:hidden" />{" "}
