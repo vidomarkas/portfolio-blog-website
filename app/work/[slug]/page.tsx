@@ -110,9 +110,10 @@ export default async function WorkDetailsPage({
 							)}
 							{sourceUrl && (
 								<Link
-									href="/work"
+									target="_blank"
+									href={sourceUrl}
 									className="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-xl flex gap-x-2 group h-fit"
-									title="See more of Viktoras Domarkas work"
+									title={`View the source code of ${title}`}
 								>
 									<Code />
 									Source Code
