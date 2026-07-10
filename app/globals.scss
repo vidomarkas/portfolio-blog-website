@@ -200,30 +200,26 @@ h6 {
 	padding-right: 1rem;
 }
 
-.header {
-	// backdrop-filter: blur(10px);
-	@apply bg-background dark:bg-[#121212];
-	// opacity: 0.9;
-	left: 0;
-	width: 100%;
-	z-index: 1;
-	position: fixed;
-	top: 0;
-	padding-left: 16px;
-	padding-right: 16px;
-	padding-top: 40px;
-	padding-bottom: 40px;
-
-	transition: all 0.3s ease;
+// Floating pill nav: expands into place on load, like a dynamic island
+.nav-pill {
+	animation: nav-expand 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
-.header--hidden {
-	transform: translateY(-100%);
+@keyframes nav-expand {
+	from {
+		max-width: 56px;
+		opacity: 0.4;
+	}
+	to {
+		max-width: 500px;
+		opacity: 1;
+	}
 }
 
-.header--scrolled {
-	padding-top: 20px;
-	padding-bottom: 20px;
+@media (prefers-reduced-motion: reduce) {
+	.nav-pill {
+		animation: none;
+	}
 }
 
 .card-view {
