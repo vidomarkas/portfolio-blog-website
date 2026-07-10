@@ -120,4 +120,4 @@ See the [Next.js deployment docs](https://nextjs.org/docs/app/building-your-appl
 
 ## Contact
 
-**Vidas Domarkas** — [domarkas.co](https://domarkas.co)
+**Viktoras Domarkas** — [domarkas.co](https://domarkas.co)
