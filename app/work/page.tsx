@@ -79,6 +79,8 @@ const page = async () => {
 												width={600}
 												height={600}
 												alt={project.featuredImage.alt}
+												sizes="(min-width: 1200px) 570px, (min-width: 768px) 50vw, 100vw"
+												priority={index === 0}
 											/>
 										</div>
 

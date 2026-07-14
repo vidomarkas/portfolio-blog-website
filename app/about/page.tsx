@@ -18,6 +18,8 @@ const About = () => {
 		alt="Viktoras Domarkas at the MongoDB conference in London"
 		width={1000}
 		height={1333}
+		sizes="(min-width: 1024px) 500px, 320px"
+		priority
 		className="aspect-square rotate-3 rounded-2xl object-cover bg-zinc-100 dark:bg-zinc-800"
 	/>
 	<figcaption className="mt-4 text-center text-sm text-zinc-500 dark:text-zinc-400">

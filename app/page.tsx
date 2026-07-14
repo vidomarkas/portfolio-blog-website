@@ -119,6 +119,7 @@ export default async function Home() {
 												width={800}
 												height={800}
 												alt={project.title}
+												sizes="(min-width: 1200px) 570px, (min-width: 768px) 50vw, 100vw"
 											/>
 										</div>
 										<div className="work-item__info">
@@ -197,6 +198,7 @@ export default async function Home() {
 														width={400}
 														height={500}
 														alt={post.title}
+														sizes="(min-width: 1024px) 400px, 75vw"
 														className="w-full h-full object-cover object-center group-hover:scale-105 transition "
 													/>
 												</div>
