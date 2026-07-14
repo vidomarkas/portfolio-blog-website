@@ -3,6 +3,14 @@ import { Tags } from "@/lib/interface";
 
 import SubscribeForm from "@/components/SubscribeForm";
 import PostsContainer from "@/components/PostsContainer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Blog",
+	description:
+		"Notes on building for the web: React, TypeScript, Node, WordPress, and lessons from shipping real projects.",
+	alternates: { canonical: "/blog" },
+};
 
 export const revalidate = 3600;
 

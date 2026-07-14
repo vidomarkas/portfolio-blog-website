@@ -4,22 +4,12 @@ import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 import { PortableTextImage } from "@/lib/interface";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useEffect } from "react";
 import "swiper/css";
 
 const Gallery = ({ gallery }: { gallery: PortableTextImage[] }) => {
-	useEffect(() => {
-		console.log(gallery);
-	}, [gallery]);
-
 	return (
 		<div className="border rounded-xl">
-			<Swiper
-				spaceBetween={50}
-				slidesPerView={3}
-				onSlideChange={() => console.log("slide change")}
-				onSwiper={(swiper) => console.log(swiper)}
-			>
+			<Swiper spaceBetween={50} slidesPerView={3}>
 				{gallery.map((image, i: number) => (
 					<SwiperSlide key={i} className="">
 						<Image
@@ -27,6 +17,7 @@ const Gallery = ({ gallery }: { gallery: PortableTextImage[] }) => {
 							alt={image.alt || `Gallery Image ${i + 1}`}
 							width={800}
 							height={400}
+							sizes="(min-width: 1200px) 390px, 33vw"
 							className=""
 						/>
 					</SwiperSlide>

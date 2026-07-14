@@ -2,6 +2,14 @@ import React from "react";
 import { Youtube, Linkedin, Instagram, Github, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "About",
+	description:
+		"Full-stack developer since 2017. Years of agency work in the UK, now based in Klaipėda, Lithuania, building products end to end and open to remote roles.",
+	alternates: { canonical: "/about" },
+};
 
 const About = () => {
 	return (
@@ -18,6 +26,8 @@ const About = () => {
 		alt="Viktoras Domarkas at the MongoDB conference in London"
 		width={1000}
 		height={1333}
+		sizes="(min-width: 1024px) 500px, 320px"
+		priority
 		className="aspect-square rotate-3 rounded-2xl object-cover bg-zinc-100 dark:bg-zinc-800"
 	/>
 	<figcaption className="mt-4 text-center text-sm text-zinc-500 dark:text-zinc-400">

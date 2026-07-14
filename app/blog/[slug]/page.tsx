@@ -54,6 +54,7 @@ export async function generateMetadata({
 	return {
 		title: metadata.title,
 		description: metadata.excerpt,
+		alternates: { canonical: `/blog/${params.slug}` },
 		openGraph: {
 			images: [{ url: urlFor(metadata.featuredImage).url() }],
 		},

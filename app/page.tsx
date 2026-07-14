@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 import { CircleChevronRight, Briefcase } from "lucide-react";
 // import { simpleBlogCard } from "@/lib/interface";
 import { FeaturedProject, Post, Tag } from "@/lib/interface";
@@ -13,6 +14,37 @@ import linkedIcon from "../public/assets/icons/linkedin.svg";
 
 // export const revalidate = 3600;
 export const revalidate = 100;
+
+export const metadata: Metadata = {
+	alternates: { canonical: "/" },
+};
+
+const personJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "Viktoras Domarkas",
+	jobTitle: "Full-Stack Developer",
+	url: "https://domarkas.co",
+	email: "mailto:hey@domarkas.co",
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: "Klaipėda",
+		addressCountry: "LT",
+	},
+	sameAs: [
+		"https://github.com/vidomarkas",
+		"https://www.linkedin.com/in/viktoras-domarkas/",
+	],
+	knowsAbout: [
+		"React",
+		"TypeScript",
+		"Node.js",
+		"Next.js",
+		"WordPress",
+		"PHP",
+		"PostgreSQL",
+	],
+};
 
 async function getData() {
 	const query = `{
@@ -42,6 +74,10 @@ export default async function Home() {
 
 	return (
 		<div className="flex flex-col min-h-screen mt-32">
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+			/>
 			<main className="flex-grow ">
 				<header className="py-20">
 					<div className="container">
@@ -119,6 +155,7 @@ export default async function Home() {
 												width={800}
 												height={800}
 												alt={project.title}
+												sizes="(min-width: 1200px) 570px, (min-width: 768px) 50vw, 100vw"
 											/>
 										</div>
 										<div className="work-item__info">
@@ -197,6 +234,7 @@ export default async function Home() {
 														width={400}
 														height={500}
 														alt={post.title}
+														sizes="(min-width: 1024px) 400px, 75vw"
 														className="w-full h-full object-cover object-center group-hover:scale-105 transition "
 													/>
 												</div>
