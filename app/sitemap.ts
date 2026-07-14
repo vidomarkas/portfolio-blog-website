@@ -14,7 +14,7 @@ async function fetchBlogPosts() {
 
 async function fetchWorkItems() {
 	const query = `
-    *[_type == "work" && featured == true]{
+    *[_type == "work"]{
         "slug": slug.current,
         _updatedAt
     }`;
@@ -28,32 +28,32 @@ export default async function sitemap() {
 		fetchWorkItems(),
 	]);
 
+	const lastModified = new Date();
+
 	return [
-		...blogPosts.map((post: { slug: string; _updatedAt: string }) => ({
-			url: `${BASE_URL}/blog/${post.slug}`,
-			lastModified: new Date(post._updatedAt),
-		})),
+		{
+			url: BASE_URL,
+			lastModified,
+		},
+		{
+			url: `${BASE_URL}/about`,
+			lastModified,
+		},
+		{
+			url: `${BASE_URL}/work`,
+			lastModified,
+		},
+		{
+			url: `${BASE_URL}/blog`,
+			lastModified,
+		},
 		...workItems.map((work: { slug: string; _updatedAt: string }) => ({
 			url: `${BASE_URL}/work/${work.slug}`,
 			lastModified: new Date(work._updatedAt),
 		})),
-		{
-			url: BASE_URL,
-		},
-		{
-			url: `${BASE_URL}/about`,
-		},
-		{
-			url: `${BASE_URL}/work`,
-		},
-		{
-			url: `${BASE_URL}/blog`,
-		},
-		{
-			url: `${BASE_URL}/cookies`,
-		},
-		{
-			url: `${BASE_URL}/privacy-policy`,
-		},
+		...blogPosts.map((post: { slug: string; _updatedAt: string }) => ({
+			url: `${BASE_URL}/blog/${post.slug}`,
+			lastModified: new Date(post._updatedAt),
+		})),
 	];
 }
