@@ -2,6 +2,14 @@ import React from "react";
 import { Youtube, Linkedin, Instagram, Github, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "About",
+	description:
+		"Full-stack developer since 2017. Years of agency work in the UK, now based in Klaipėda, Lithuania, building products end to end and open to remote roles.",
+	alternates: { canonical: "/about" },
+};
 
 const About = () => {
 	return (
