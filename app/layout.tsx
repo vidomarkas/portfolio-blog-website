@@ -26,13 +26,18 @@ const sourceSerif = localFont({
 });
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://domarkas.co"),
 	title: {
-		default:
-			"Viktoras Domarkas - Web Developer in the UK | Front-End & Back-End Expertise",
-		template: "%s - Viktoras Domarkas - Web Developer in the UK",
+		default: "Viktoras Domarkas | Full-Stack Developer",
+		template: "%s | Viktoras Domarkas",
 	},
 	description:
-		"Viktoras Domarkas is a skilled web developer specialising in building high-performance websites, bespoke web applications, and seamless user experiences. Based in the UK, he brings almost a decade of expertise in front-end and back-end development, delivering tailored solutions that drive results.",
+		"Full-stack developer building websites and web apps end to end. React, TypeScript and Node, WordPress when it fits. Based in Klaipėda, Lithuania, open to remote.",
+	openGraph: {
+		type: "website",
+		siteName: "Viktoras Domarkas",
+		locale: "en_GB",
+	},
 };
 
 export default function RootLayout({

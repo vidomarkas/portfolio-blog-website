@@ -6,15 +6,17 @@ import { Code, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import GallerySlider from "@/components/Gallery";
+import { Metadata } from "next";
 
 export const revalidate = 60;
 
 async function getData(slug: string) {
 	const query = `
-    *[_type == "work" && slug.current == '${slug}']{
+    *[_type == "work" && slug.current == '${slug}' && hasCaseStudy == true]{
   "slug": slug.current,
     title,
     industry,
+    featuredImage,
     aboutClientText,
     sourceUrl,
     liveUrl,
@@ -30,6 +32,32 @@ async function getData(slug: string) {
 	const data = await client.fetch(query);
 
 	return data;
+}
+
+export async function generateMetadata({
+	params,
+}: {
+	params: { slug: string };
+}): Promise<Metadata> {
+	const data = await getData(params.slug);
+
+	if (!data) {
+		return {
+			title: "Project Not Found",
+			description: "The project you are looking for doesn't exist.",
+		};
+	}
+
+	return {
+		title: `${data.title} Case Study`,
+		description:
+			data.aboutClientText ||
+			`${data.title}: a project by Viktoras Domarkas, full-stack developer.`,
+		alternates: { canonical: `/work/${params.slug}` },
+		openGraph: data.featuredImage
+			? { images: [{ url: urlFor(data.featuredImage).url() }] }
+			: undefined,
+	};
 }
 
 const ptComponents = {

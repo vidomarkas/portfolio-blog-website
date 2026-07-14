@@ -8,6 +8,14 @@ import {
 } from "@/components/ui/accordion";
 import { client, urlFor } from "@/lib/sanity";
 import { FeaturedProject } from "@/lib/interface";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Work",
+	description:
+		"Selected projects and case studies: production sites for UK businesses, custom WordPress builds, and Aukse, a household expense tracker built end to end.",
+	alternates: { canonical: "/work" },
+};
 
 export const revalidate = 100;
 
