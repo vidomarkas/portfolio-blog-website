@@ -29,6 +29,22 @@ export const work = defineType({
       description: 'Check this box to mark as featured work',
     },
     {
+      name: 'hasCaseStudy',
+      type: 'boolean',
+      title: 'Has case study page',
+      initialValue: false,
+      description:
+        'Check when this work has a written case study. Controls whether a public detail page exists and is listed in the sitemap. Unchecked work still appears in "Other notable projects".',
+      validation: (rule: Rule) =>
+        rule.custom((value, context) => {
+          const doc = context.document as {featured?: boolean} | undefined
+          if (doc?.featured && !value) {
+            return 'Featured work must have a case study page (featured cards link to it)'
+          }
+          return true
+        }),
+    },
+    {
       name: 'gallery',
       type: 'array',
       of: [

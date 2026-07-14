@@ -12,7 +12,7 @@ export const revalidate = 60;
 
 async function getData(slug: string) {
 	const query = `
-    *[_type == "work" && slug.current == '${slug}']{
+    *[_type == "work" && slug.current == '${slug}' && hasCaseStudy == true]{
   "slug": slug.current,
     title,
     industry,

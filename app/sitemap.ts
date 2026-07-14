@@ -14,7 +14,7 @@ async function fetchBlogPosts() {
 
 async function fetchWorkItems() {
 	const query = `
-    *[_type == "work"]{
+    *[_type == "work" && hasCaseStudy == true]{
         "slug": slug.current,
         _updatedAt
     }`;
