@@ -7,7 +7,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
 	title: "About",
 	description:
-		"Full-stack developer since 2017. Years of agency work in the UK, now based in Klaipėda, Lithuania, building products end to end and open to remote roles.",
+		"Full-stack developer since 2017. Years of agency work for UK businesses, now building products end to end. Based in the UK, open to remote roles.",
 	alternates: { canonical: "/about" },
 };
 
@@ -41,7 +41,7 @@ const About = () => {
 									I’m Viktoras.<br />I’ve been building for the web since 2017.
 								</h1>
 								<div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-									<p>I started writing code while living in the United Kingdom, and spent years there building websites and web applications for agencies and their clients. Most of it ran on WordPress, but not the off-the-shelf kind: custom functionality in PHP and React, third-party and CRM integrations, bespoke page-building tools for editorial teams, and the kind of migrations that come with four-digit page counts. These days I’m based in Klaipėda, Lithuania, and I work with teams wherever they are.
+									<p>I got my start building websites and web applications for UK agencies and their clients. Most of it ran on WordPress, but not the off-the-shelf kind: custom functionality in PHP and React, third-party and CRM integrations, bespoke page-building tools for editorial teams, and the kind of migrations that come with four-digit page counts. I’m based in the UK and work with teams wherever they are.
 									</p>
 
 									<p>
@@ -115,7 +115,7 @@ const About = () => {
 									
 	<span className="group flex text-sm font-medium text-zinc-800 dark:text-zinc-200">
 		<MapPin />
-		<span className="ml-4">Klaipėda, Lithuania</span>
+		<span className="ml-4">United Kingdom</span>
 	</span>
 </li>
 									

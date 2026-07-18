@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 		template: "%s | Viktoras Domarkas",
 	},
 	description:
-		"Full-stack developer building websites and web apps end to end. React, TypeScript and Node, WordPress when it fits. Based in Klaipėda, Lithuania, open to remote.",
+		"Full-stack developer building websites and web apps end to end. React, TypeScript and Node, WordPress when it fits. Based in the UK, open to remote.",
 	openGraph: {
 		type: "website",
 		siteName: "Viktoras Domarkas",
