@@ -28,8 +28,7 @@ const personJsonLd = {
 	email: "mailto:hey@domarkas.co",
 	address: {
 		"@type": "PostalAddress",
-		addressLocality: "Klaipėda",
-		addressCountry: "LT",
+		addressCountry: "GB",
 	},
 	sameAs: [
 		"https://github.com/vidomarkas",
@@ -92,7 +91,7 @@ export default async function Home() {
 							Building for the web since 2017: WordPress sites for
 							businesses that needed them, custom React and Node
 							apps when that was the right call, and lately my own
-							product, end to end. Based in Lithuania, open to
+							product, end to end. Based in the UK, open to
 							remote.
 						</p>
 						<div className="flex flex-wrap items-center gap-x-6 gap-y-4">
