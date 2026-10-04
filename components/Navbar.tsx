@@ -15,7 +15,7 @@ import {
 
 const links = [
 	{ name: "Work", path: "/work" },
-	{ name: "Blog", path: "/blog" },
+	// { name: "Blog", path: "/blog" },
 	{ name: "About", path: "/about" },
 ];
 
@@ -58,7 +58,7 @@ export const Navbar = () => {
 									"whitespace-nowrap font-medium underline-offset-4 transition-colors hover:underline",
 									pathName === link.path
 										? "underline"
-										: "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+										: "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100",
 								)}
 							>
 								{link.name}
