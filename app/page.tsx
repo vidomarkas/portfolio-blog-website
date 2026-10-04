@@ -75,7 +75,9 @@ export default async function Home() {
 		<div className="flex flex-col min-h-screen mt-32">
 			<script
 				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(personJsonLd),
+				}}
 			/>
 			<main className="flex-grow ">
 				<header className="py-20">
@@ -91,8 +93,8 @@ export default async function Home() {
 							Building for the web since 2017: WordPress sites for
 							businesses that needed them, custom React and Node
 							apps when that was the right call, and lately my own
-							product, end to end. Based in the UK, open to
-							remote.
+							product, end to end. Based in Klaipeda, Lithuania,
+							open to remote.
 						</p>
 						<div className="flex flex-wrap items-center gap-x-6 gap-y-4">
 							<a
@@ -127,7 +129,7 @@ export default async function Home() {
 						</div>
 					</div>
 				</header>
-				
+
 				<section>
 					<div
 						className={`container grid grid-cols-1 md:grid-cols-2 grid-rows-${featuredProjects.length + 1} gap-10 lg:gap-32 py-20`}
@@ -149,7 +151,7 @@ export default async function Home() {
 										<div className="work-item__image">
 											<Image
 												src={urlFor(
-													project.featuredImage
+													project.featuredImage,
 												).url()}
 												width={800}
 												height={800}
@@ -167,7 +169,7 @@ export default async function Home() {
 													project.services.map(
 														(
 															service,
-															i: number
+															i: number,
 														) => (
 															<li
 																key={i}
@@ -175,13 +177,13 @@ export default async function Home() {
 															>
 																{service.name}
 															</li>
-														)
+														),
 													)}
 											</ul>
 										</div>
 									</Link>
 								);
-							}
+							},
 						)}
 
 						<div className="flex justify-center">
@@ -228,7 +230,7 @@ export default async function Home() {
 												<div className="card-overlay">
 													<Image
 														src={urlFor(
-															post.featuredImage
+															post.featuredImage,
 														).url()}
 														width={400}
 														height={500}
@@ -248,7 +250,7 @@ export default async function Home() {
 																>
 																	#{tag?.name}
 																</p>
-															)
+															),
 														)}
 													</div>
 													<h3 className="text-white mb-3 line-clamp-2">
