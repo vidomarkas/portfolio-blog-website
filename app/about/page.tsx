@@ -115,13 +115,6 @@ const About = () => {
 										people who build things. That’s the
 										MongoDB event in London in the photo.
 									</p>
-
-									<p>
-										If you’re building something and need a
-										developer who can take it from the
-										database to the pixels, I’d like to hear
-										from you.
-									</p>
 								</div>
 							</div>
 							<div className="lg:pl-20">
